@@ -1,6 +1,6 @@
 # vue-lynx-genesis
 
-This is a prototype that integrates Lynx's powerful multi-threaded UI rendering capabilities with Vue's component system and Vite's lightning-fast development environment. 
+This is a prototype that integrates Lynx's powerful multi-threaded UI rendering capabilities with Vue's component system, Vite's development environment, and uses webpack to handle the Vue-Lynx integration.
 
 As noted in issue [193](https://github.com/lynx-family/lynx/issues/193) of the official lynx repo, support for Vue in Lynx is has been gaining support, so I decided to create this project as a starting point.
 
