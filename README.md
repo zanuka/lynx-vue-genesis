@@ -24,7 +24,7 @@ After running `bun install` and `bun run dev:lynx` you should see this demo app 
 ### Debug Panel
 In addition, there's a debug panel that will load below the counter.
 
-![Vue-Lynx Debug Panel](/src/assets/vue-lynx-debug.png)
+![Vue-Lynx Debug Panel](/src/assets/vue-lynx-debug_new.png)
 The debug panel shows an example of the following Lynx features:
 - Main thread/worker thread separation for UI performance
 - async message-based communication between threads
