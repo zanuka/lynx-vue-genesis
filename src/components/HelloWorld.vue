@@ -43,6 +43,42 @@
 					<h3 class="font-medium text-gray-900">Vue Router</h3>
 					<p class="text-sm text-gray-600">^4.4.3</p>
 				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">@headlessui/vue</h3>
+					<p class="text-sm text-gray-600">^1.7.19</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">@heroicons/vue</h3>
+					<p class="text-sm text-gray-600">^2.1.1</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">@vueuse/core</h3>
+					<p class="text-sm text-gray-600">^10.9.0</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">axios</h3>
+					<p class="text-sm text-gray-600">^1.6.8</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">marked</h3>
+					<p class="text-sm text-gray-600">^14.0.0</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">Lynx JS</h3>
+					<p class="text-sm text-gray-600">Multiple packages</p>
+				</div>
 			</div>
 		</div>
 
@@ -86,6 +122,30 @@
 				>
 					<h3 class="font-medium text-gray-900">@testing-library/vue</h3>
 					<p class="text-sm text-gray-600">^8.1.0</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">TypeScript</h3>
+					<p class="text-sm text-gray-600">~5.5.4</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">webpack</h3>
+					<p class="text-sm text-gray-600">^5.98.0</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">happy-dom</h3>
+					<p class="text-sm text-gray-600">^14.12.3</p>
+				</div>
+				<div
+					class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+				>
+					<h3 class="font-medium text-gray-900">msw</h3>
+					<p class="text-sm text-gray-600">^2.4.8</p>
 				</div>
 			</div>
 		</div>

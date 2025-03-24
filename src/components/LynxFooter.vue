@@ -27,6 +27,30 @@
 					<text class="card-title">Vue Router</text>
 					<text class="card-subtitle">^4.4.3</text>
 				</view>
+				<view class="card">
+					<text class="card-title">@headlessui/vue</text>
+					<text class="card-subtitle">^1.7.19</text>
+				</view>
+				<view class="card">
+					<text class="card-title">@heroicons/vue</text>
+					<text class="card-subtitle">^2.1.1</text>
+				</view>
+				<view class="card">
+					<text class="card-title">@vueuse/core</text>
+					<text class="card-subtitle">^10.9.0</text>
+				</view>
+				<view class="card">
+					<text class="card-title">axios</text>
+					<text class="card-subtitle">^1.6.8</text>
+				</view>
+				<view class="card">
+					<text class="card-title">marked</text>
+					<text class="card-subtitle">^14.0.0</text>
+				</view>
+				<view class="card">
+					<text class="card-title">Lynx JS</text>
+					<text class="card-subtitle">Multiple packages</text>
+				</view>
 			</view>
 		</view>
 
@@ -56,6 +80,22 @@
 				<view class="card">
 					<text class="card-title">@testing-library/vue</text>
 					<text class="card-subtitle">^8.1.0</text>
+				</view>
+				<view class="card">
+					<text class="card-title">TypeScript</text>
+					<text class="card-subtitle">~5.5.4</text>
+				</view>
+				<view class="card">
+					<text class="card-title">webpack</text>
+					<text class="card-subtitle">^5.98.0</text>
+				</view>
+				<view class="card">
+					<text class="card-title">happy-dom</text>
+					<text class="card-subtitle">^14.12.3</text>
+				</view>
+				<view class="card">
+					<text class="card-title">msw</text>
+					<text class="card-subtitle">^2.4.8</text>
 				</view>
 			</view>
 		</view>
