@@ -1,0 +1,24 @@
+<view style="flex: 1; flex-direction: column; padding: 20px; background-color: #ffffff;">
+  <text style="font-size: 24px; font-weight: bold; margin-bottom: 16px; color: #2c3e50;">A simple starter project for Vue 3, TypeScript, Tailwind CSS, and Vite.</text>
+  
+  <text style="font-size: 20px; font-weight: 600; margin-top: 20px; margin-bottom: 12px; color: #2c3e50;">Primary Dependencies</text>
+  
+  <view style="flex-direction: row; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+    <view style="padding: 12px; background-color: #f8f8f8; border-radius: 8px; border-width: 1px; border-color: #e2e8f0; width: 150px;">
+      <text style="font-weight: 500; color: #2c3e50;">Vue 3</text>
+      <text style="font-size: 14px; color: #6b7280;">^3.4.37</text>
+    </view>
+    
+    <view style="padding: 12px; background-color: #f8f8f8; border-radius: 8px; border-width: 1px; border-color: #e2e8f0; width: 150px;">
+      <text style="font-weight: 500; color: #2c3e50;">TypeScript</text>
+      <text style="font-size: 14px; color: #6b7280;">~5.5.4</text>
+    </view>
+    
+    <view style="padding: 12px; background-color: #f8f8f8; border-radius: 8px; border-width: 1px; border-color: #e2e8f0; width: 150px;">
+      <text style="font-weight: 500; color: #2c3e50;">Vite</text>
+      <text style="font-size: 14px; color: #6b7280;">^5.4.0</text>
+    </view>
+  </view>
+  
+  <text style="color: #42b983; margin-top: 16px;">Created by zanuka</text>
+</view> 

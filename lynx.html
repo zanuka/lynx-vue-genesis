@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Lynx Genesis</title>
+
+    <!-- Workaround for missing Lynx exports -->
+    <script>
+      // Create global mock for missing exports from Lynx packages
+      window.__lynxMocks = {
+        createLynxComponent: function () {
+          console.warn('Mock createLynxComponent called');
+          return {};
+        },
+        // Add other mocks as needed
+      };
+    </script>
+
+    <!-- Preload a CSS backup for the case where Lynx isn't loading correctly -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+          Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: #f3f4f6;
+      }
+
+      #lynx-root {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* Fallback styling for components if Lynx elements don't load */
+      view {
+        display: flex;
+        flex-direction: column;
+      }
+
+      text {
+        display: block;
+      }
+
+      .lynx-app-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Debug console */
+      #debug-console {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #f8f8f8;
+        font-family: monospace;
+        font-size: 12px;
+        height: 200px;
+        overflow-y: auto;
+        z-index: 9999;
+        padding: 10px;
+        box-sizing: border-box;
+        display: none;
+      }
+
+      .debug-message {
+        margin: 2px 0;
+        border-bottom: 1px solid #333;
+        padding-bottom: 2px;
+      }
+
+      .debug-error {
+        color: #ff6b6b;
+      }
+
+      .debug-info {
+        color: #69db7c;
+      }
+
+      .debug-warning {
+        color: #fcc419;
+      }
+
+      /* Debug toggle button */
+      #debug-toggle {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        z-index: 10000;
+      }
+
+      /* Loading indicator */
+      #loading-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10001;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border-left-color: #09f;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <!-- Error handling script that runs before the main script -->
+    <script>
+      // Define a global error handler
+      window.addEventListener('error', function (event) {
+        console.error('Global error:', event.error || event.message);
+        const errorMessage = event.error ? event.error.message : event.message;
+
+        // Check if it's the specific error we're concerned about
+        if (errorMessage &&
+          (errorMessage.includes('createLynxComponent') ||
+            errorMessage.includes('does not provide an export'))
+        ) {
+          showErrorMessage('Lynx Component Error',
+            'The Lynx library does not provide an expected export. ' +
+            'We will try to continue without Lynx-specific features.');
+
+          // Prevent the error from stopping further execution
+          event.preventDefault();
+        }
+      });
+
+      // Function to show an error message to the user
+      function showErrorMessage(title, message) {
+        const loadingIndicator = document.getElementById('loading-indicator');
+        if (loadingIndicator) {
+          loadingIndicator.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; text-align: center;">
+              <h2 style="color: #e53e3e; margin-top: 0;">${title}</h2>
+              <p>${message}</p>
+              <button onclick="window.location.reload()" style="background: #3182ce; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Reload Page</button>
+            </div>
+          `;
+        }
+      }
+
+      // Create a failsafe to remove the loading indicator after a timeout
+      setTimeout(function () {
+        const loadingIndicator = document.getElementById('loading-indicator');
+        if (loadingIndicator && loadingIndicator.style.display !== 'none') {
+          console.warn('Removing loading indicator after timeout');
+          loadingIndicator.style.display = 'none';
+        }
+      }, 10000); // 10 seconds timeout
+    </script>
+
+    <!-- Add the main script with an onerror handler -->
+    <script type="module" src="/src/lynx-main.ts"
+      onerror="showErrorMessage('Script Loading Error', 'Failed to load the main script. Check console for details.')"></script>
+  </head>
+
+  <body>
+    <!-- Loading indicator -->
+    <div id="loading-indicator">
+      <div class="spinner"></div>
+      <p>Loading Vue + Lynx Demo...</p>
+    </div>
+
+    <div id="lynx-root"></div>
+
+    <!-- Floating debug console (hidden by default) -->
+    <div id="debug-console"></div>
+    <button id="debug-toggle" onclick="toggleDebugConsole()">Show Debug
+      Console</button>
+
+    <script>
+      // Hide loading indicator when DOM content is loaded
+      window.addEventListener('DOMContentLoaded', function () {
+        // Wait a bit to ensure Vue has a chance to mount
+        setTimeout(function () {
+          const loadingIndicator = document.getElementById('loading-indicator');
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+          }
+        }, 1000);
+      });
+
+      // Override console.log and friends to also output to our debug console
+      function setupDebugConsole() {
+        const debugConsole = document.getElementById('debug-console');
+        const originals = {
+          log: console.log,
+          error: console.error,
+          warn: console.warn,
+          info: console.info
+        };
+
+        function addToDebugConsole(message, type) {
+          if (!debugConsole) return;
+
+          const div = document.createElement('div');
+          div.className = `debug-message debug-${type}`;
+          div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+          debugConsole.appendChild(div);
+
+          // Auto-scroll to bottom
+          debugConsole.scrollTop = debugConsole.scrollHeight;
+
+          // Keep only the last 100 messages
+          while (debugConsole.children.length > 100) {
+            debugConsole.removeChild(debugConsole.firstChild);
+          }
+        }
+
+        console.log = function () {
+          const args = Array.from(arguments);
+          const message = args.map(arg =>
+            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+          ).join(' ');
+
+          addToDebugConsole(message, 'info');
+          originals.log.apply(console, arguments);
+        };
+
+        console.error = function () {
+          const args = Array.from(arguments);
+          const message = args.map(arg =>
+            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+          ).join(' ');
+
+          addToDebugConsole(message, 'error');
+          originals.error.apply(console, arguments);
+        };
+
+        console.warn = function () {
+          const args = Array.from(arguments);
+          const message = args.map(arg =>
+            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+          ).join(' ');
+
+          addToDebugConsole(message, 'warning');
+          originals.warn.apply(console, arguments);
+        };
+
+        console.info = function () {
+          const args = Array.from(arguments);
+          const message = args.map(arg =>
+            typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+          ).join(' ');
+
+          addToDebugConsole(message, 'info');
+          originals.info.apply(console, arguments);
+        };
+      }
+
+      // Toggle debug console visibility
+      function toggleDebugConsole() {
+        const debugConsole = document.getElementById('debug-console');
+        const debugToggle = document.getElementById('debug-toggle');
+
+        if (debugConsole.style.display === 'block') {
+          debugConsole.style.display = 'none';
+          debugToggle.textContent = 'Show Debug Console';
+        } else {
+          debugConsole.style.display = 'block';
+          debugToggle.textContent = 'Hide Debug Console';
+        }
+      }
+
+      // Setup debug console when page loads
+      window.addEventListener('DOMContentLoaded', setupDebugConsole);
+    </script>
+  </body>
+
+</html>

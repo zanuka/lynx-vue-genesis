@@ -1,0 +1,47 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "dom"],
+		"noEmit": true,
+		"strict": true,
+		"allowJs": true,
+		"jsx": "preserve",
+		"noImplicitAny": false,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"noUnusedLocals": false,
+		"useDefineForClassFields": true,
+		"strictNullChecks": true,
+		"sourceMap": true,
+		"forceConsistentCasingInFileNames": true,
+		"typeRoots": [
+			"node_modules/@types",
+			"./cypress/support",
+			"./node_modules/vitest/types"
+		],
+		"types": ["node"]
+	},
+	"include": [
+		"src/*.ts",
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"src/**/*.html",
+		"cypress/**/*.cy.ts",
+		"cypress.d.ts",
+		"cypress/support/index.d.ts",
+		"test/vitest-setup.ts"
+	],
+	"exclude": ["node_modules"],
+	"references": [{ "path": "./tsconfig.node.json" }]
+}

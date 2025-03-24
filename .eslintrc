@@ -1,0 +1,48 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true,
+		"vue/setup-compiler-macros": true
+	},
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:vue/vue3-recommended",
+		"@vue/typescript/recommended",
+		"@vue/eslint-config-prettier"
+	],
+	"parser": "vue-eslint-parser",
+	"parserOptions": {
+		"ecmaVersion": 2021,
+		"parser": "@typescript-eslint/parser",
+		"sourceType": "module",
+		"extraFileExtensions": [".vue", ".html", ".d.ts"]
+	},
+	"rules": {
+		"comma-dangle": ["off", "always-multiline"],
+		"vue/html-indent": ["off"],
+		"vue/attribute-hyphenation": ["off"],
+		"vue/v-on-event-hyphenation": ["off"],
+		"vue/no-v-html:": ["off"]
+	},
+	"plugins": ["@typescript-eslint", "import", "vue"],
+	"overrides": [
+		{
+			"files": ["./**/*.{ts,tsx}"],
+			"rules": {
+				"@typescript-eslint/dot-notation": "off",
+				"@typescript-eslint/promise-function-async": "off",
+				"@typescript-eslint/strict-boolean-expressions": "off",
+				"@typescript-eslint/no-unused-vars": "off",
+				"@typescript-eslint/no-non-null-assertion": "off",
+				"@typescript-eslint/no-unnecessary-type-assertion": "off",
+				"@typescript-eslint/consistent-type-assertions": "warn",
+				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/no-undef": "off",
+				"@typescript-eslint/no-unreachable:": "off",
+				"@typescript-eslint/no-duplicate-enum-values:": "off"
+			}
+		}
+	]
+}

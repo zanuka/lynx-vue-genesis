@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* your custom fonts go here */
+
+/* @font-face {
+	font-family: 'Roboto';
+	font-display: swap;
+	src:
+		local('Roboto'),
+		url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto-Bold';
+	font-display: swap;
+	src:
+		local('Roboto-Bold'),
+		url('./assets/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto-Light';
+	font-display: swap;
+	src:
+		local('Roboto-Light'),
+		url('./assets/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto-Italic';
+	font-display: swap;
+	src:
+		local('Roboto-Italic'),
+		url('./assets/fonts/Roboto-Italic.ttf') format('truetype');
+} */
+
+html,
+body {
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	text-align: center;
+	background-color: #fff;
+	color: #4d4d4d;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* further global styles go here */
+
+.disabledButton {
+	opacity: 0.5;
+}
+
+/* override stroke-width attribute in heroicons */
+
+.heroicon-stroke-w-0\.4 > path {
+	stroke-width: 0.4;
+}
+
+.heroicon-stroke-w-0\.8 > path {
+	stroke-width: 0.8;
+}
+
+.heroicon-stroke-w-1 > path {
+	stroke-width: 1;
+}
+
+.heroicon-stroke-w-1\.2 > path {
+	stroke-width: 1.2;
+}
+
+.heroicon-stroke-w-1\.4 > path {
+	stroke-width: 1.4;
+}
+
+.heroicon-stroke-w-1\.6 > path {
+	stroke-width: 1.6;
+}

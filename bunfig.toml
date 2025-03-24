@@ -1,0 +1,7 @@
+[install]
+# Install optional peer dependencies
+peer = true
+
+[test]
+# Use the same test pattern as in package.json
+testPattern = "./src/**/*.spec.ts" 
