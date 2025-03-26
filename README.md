@@ -4,6 +4,8 @@ This is a prototype that integrates Lynx's powerful multi-threaded UI rendering 
 
 As noted in issue [193](https://github.com/lynx-family/lynx/issues/193) of the official [lynx repo](https://github.com/lynx-family/lynx), support for Vue in Lynx is has been gaining support, so I decided to create this project as a starting point.
 
+March 26 update: am working on a new branch experimenting on iOS + Android support. Feel free to check it out and add issues, contributors welcome! https://github.com/zanuka/vue-lynx-genesis/tree/1-configs-for-ios-android
+
 I'm currently working on porting the logic to a standalone Vite plugin (npm package) to acheive the following: 
 
 - Simplified Integration: reduce the current complex setup to a single plugin installation and minimal configuration
