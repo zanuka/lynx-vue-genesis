@@ -1,13 +1,9 @@
-/**
- * Lynx Android build configuration
- */
-
 import { defineConfig } from '@lynx-js/rspeedy';
 import { pluginVueLynx } from './loaders/vue-lynx-rspeedy-plugin.ts';
 
 export default defineConfig({
 	source: {
-		entry: './src/lynx-main.ts', // Updated to match the same entry as iOS and web
+		entry: './src/lynx-main.ts',
 		include: ['**/*.vue', '**/*.lynx', '**/*.jsx', '**/*.tsx', '**/*.ts'],
 		exclude: ['node_modules/**'],
 	},
@@ -19,7 +15,6 @@ export default defineConfig({
 		filename: '[name].js',
 		assetPrefix: '/',
 	},
-	// Use our Vue Lynx plugin with platform set to Android
 	plugins: [
 		pluginVueLynx({
 			platform: 'android',

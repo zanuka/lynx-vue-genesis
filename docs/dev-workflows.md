@@ -1,4 +1,4 @@
-# Lynx Development Workflows
+# Development Workflows
 
 This project supports development with Lynx, which allows your Vue components to run natively on mobile devices.
 

@@ -1,4 +1,3 @@
-// Import our Vue Webpack Plugin
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'path';
@@ -8,7 +7,6 @@ const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Import the Vue Loader Plugin
 let VueLoaderPlugin;
 try {
 	const VueLoader = require('vue-loader');
@@ -28,41 +26,14 @@ try {
 	}
 }
 
-/**
- * Plugin options for Vue Lynx integration in rspeedy
- */
 class PluginVueLynxOptions {
-	/**
-	 * Whether to enable Vue's dev tools
-	 */
 	enableDevTools = false;
-
-	/**
-	 * Whether to enable Vue's SSR capabilities
-	 */
 	enableSSR = false;
-
-	/**
-	 * First screen timing - when to render the first screen
-	 */
 	firstScreenSyncTiming = 'immediately';
-
-	/**
-	 * Platform target (ios, android, etc.)
-	 */
 	platform = 'web';
-
-	/**
-	 * Custom element tags to register
-	 */
 	customElements = ['view', 'text', 'image', 'scroll-view'];
 }
 
-/**
- * A plugin for rspeedy that integrates Vue with Lynx
- *
- * @public
- */
 export function pluginVueLynx(options = {}) {
 	const pluginOptions = { ...new PluginVueLynxOptions(), ...options };
 
@@ -70,23 +41,18 @@ export function pluginVueLynx(options = {}) {
 		name: 'plugin-vue-lynx',
 
 		setup(api) {
-			// Add loaders for Vue files
 			api.modifyRsbuildConfig((config) => {
 				config.source = config.source || {};
 				config.source.alias = config.source.alias || {};
 
-				// Add aliases for Vue-Lynx runtime
 				config.source.alias['@vue-lynx/runtime'] = path.resolve(__dirname, '../runtime');
 
 				return config;
 			});
 
-			// Configure the Vue loaders
 			api.modifyBundlerChain((chain, { CHAIN_ID }) => {
-				// Add Vue file extensions
 				chain.resolve.extensions.add('.vue').add('.jsx').add('.tsx');
 
-				// Configure Vue loader
 				const vueRule = chain.module.rule(CHAIN_ID.RULE.VUE || 'vue');
 				vueRule
 					.test(/\.vue$/)
@@ -98,7 +64,6 @@ export function pluginVueLynx(options = {}) {
 						},
 					});
 
-				// Configure main thread Vue files
 				const mainThreadRule = chain.module.rule('vue-lynx-main');
 				mainThreadRule
 					.test(/\.(jsx?|tsx?)$/)
@@ -117,7 +82,6 @@ export function pluginVueLynx(options = {}) {
 						layer: LAYERS.MAIN_THREAD,
 					});
 
-				// Configure background thread files
 				const backgroundRule = chain.module.rule('vue-lynx-background');
 				backgroundRule
 					.test(/\.(jsx?|tsx?)$/)
@@ -137,10 +101,8 @@ export function pluginVueLynx(options = {}) {
 						thread: 'background',
 					});
 
-				// Add type-checking if TypeScript is used
 				try {
 					require.resolve('typescript', { paths: [process.cwd()] });
-					// Add TypeScript support
 					chain.module
 						.rule('ts')
 						.test(/\.tsx?$/)
@@ -155,7 +117,6 @@ export function pluginVueLynx(options = {}) {
 					// TypeScript not installed, skip
 				}
 
-				// Add Babel for JSX support - keeping it simple for now
 				chain.module
 					.rule('jsx')
 					.test(/\.jsx?$/)
@@ -165,7 +126,6 @@ export function pluginVueLynx(options = {}) {
 						// No special presets for now to avoid dependency issues
 					});
 
-				// Add the Vue Webpack Plugin
 				chain.plugin('vue-webpack-plugin').use(VueWebpackPlugin, [
 					{
 						enableDevTools: pluginOptions.enableDevTools,
@@ -175,17 +135,14 @@ export function pluginVueLynx(options = {}) {
 					},
 				]);
 
-				// Add the Vue Loader Plugin
 				chain.plugin('vue-loader-plugin').use(VueLoaderPlugin);
 			});
 
-			// Add the platform target
 			api.modifyRsbuildConfig((config) => {
 				if (!config.environments) {
 					config.environments = {};
 				}
 
-				// Set the platform-specific environment
 				if (pluginOptions.platform === 'ios') {
 					config.environments.ios = config.environments.ios || {};
 				} else if (pluginOptions.platform === 'android') {

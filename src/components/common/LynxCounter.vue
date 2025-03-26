@@ -16,18 +16,17 @@
 	</view>
 </template>
 
-<script>
-// This would be executed in the worker thread in a real Lynx setup
-import { ref } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 
 // Debug logging
 console.log('LynxCounter component is being loaded');
 
-export default {
+export default defineComponent({
 	name: 'LynxCounter',
 	setup() {
-		console.log('LynxCounter setup function called');
-
+		console.log('LynxCounter setup started');
+		
 		const count = ref(0);
 
 		function increment() {
@@ -63,7 +62,7 @@ export default {
 	mounted() {
 		console.log('LynxCounter mounted');
 	}
-};
+});
 </script>
 
 <style>

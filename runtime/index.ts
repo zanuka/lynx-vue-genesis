@@ -137,3 +137,48 @@ export function patchVueRuntime() {
 		};
 	}
 }
+
+/**
+ * Vue Lynx Runtime
+ * 
+ * Provides runtime initialization for Vue Lynx applications
+ */
+
+interface RuntimeOptions {
+	/**
+	 * First screen sync timing option - when to transfer control
+	 */
+	firstScreenSyncTiming: 'immediately' | 'jsReady';
+
+	/**
+	 * Name of the entry point
+	 */
+	entryName: string;
+}
+
+/**
+ * Initialize the Vue Lynx runtime
+ */
+export function initRuntime(options: RuntimeOptions): void {
+	const { firstScreenSyncTiming, entryName } = options;
+
+	console.log(`Initializing Vue Lynx runtime for ${entryName}`);
+	console.log(`First screen sync timing: ${firstScreenSyncTiming}`);
+
+	// Set up global Vue Lynx runtime on window
+	if (typeof window !== 'undefined') {
+		window.__VUE_LYNX_RUNTIME__ = {
+			initialized: true,
+			options,
+		};
+
+		// Dispatch a custom event to notify components
+		window.dispatchEvent(new CustomEvent('vue-lynx-runtime-ready', {
+			detail: {
+				initialized: true,
+				firstScreenSyncTiming,
+				entryName,
+			}
+		}));
+	}
+}

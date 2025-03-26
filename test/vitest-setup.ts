@@ -4,23 +4,19 @@ import { configure } from '@testing-library/vue';
 import ResizeObserver from 'resize-observer-polyfill';
 import { afterAll, beforeAll, vi } from 'vitest';
 
-// Setup global DOM environment
 global.ResizeObserver = ResizeObserver;
 
-// Mock for MutationObserver
 global.MutationObserver = class {
 	observe() { }
 	disconnect() { }
 	takeRecords() { return []; }
 };
 
-// Add missing DOM properties
 if (typeof globalThis.document !== 'undefined') {
 	Object.defineProperty(globalThis.document, 'doctype', {
 		value: '<!DOCTYPE html>'
 	});
 
-	// Mock createRange with appropriate types
 	if (!document.createRange) {
 		document.createRange = () => {
 			const range = {
@@ -38,7 +34,6 @@ if (typeof globalThis.document !== 'undefined') {
 	}
 }
 
-// Enhanced mock for customElements API
 if (typeof customElements === 'undefined') {
 	const definedElements = new Map();
 
@@ -53,7 +48,6 @@ if (typeof customElements === 'undefined') {
 	} as unknown as CustomElementRegistry;
 }
 
-// Silence console noise during tests
 beforeAll(() => {
 	vi.spyOn(console, 'error').mockImplementation((...args) => {
 		const msg = args.join(' ');
@@ -66,7 +60,6 @@ beforeAll(() => {
 		) {
 			return;
 		}
-		// Let other errors through to console
 		console.info('Console error passed through:', ...args);
 	});
 
@@ -83,12 +76,10 @@ beforeAll(() => {
 	});
 });
 
-// Reset mocks after all tests
 afterAll(() => {
 	vi.restoreAllMocks();
 });
 
-// Configure testing library
 configure({
 	testIdAttribute: 'data-test-id'
 });

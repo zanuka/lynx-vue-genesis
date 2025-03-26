@@ -2,44 +2,66 @@ import { execSync } from 'child_process';
 import { networkInterfaces } from 'os';
 import qrcode from 'qrcode-terminal';
 
-// Get the local IP address
 function getLocalIpAddress() {
 	const nets = networkInterfaces();
 	for (const name of Object.keys(nets)) {
 		for (const net of nets[name]) {
-			// Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
 			if (net.family === 'IPv4' && !net.internal) {
 				return net.address;
 			}
 		}
 	}
-	return '127.0.0.1'; // Fallback to localhost
+	return '127.0.0.1';
 }
 
-// Try to detect the port used by rspeedy
 function detectRspeedyPort() {
 	try {
-		// Get the list of listening ports used by rspeedy process
 		const result = execSync(
 			"lsof -i -P | grep rspeedy | grep LISTEN | awk '{print $9}'"
 		)
 			.toString()
 			.trim();
 		if (result) {
-			// Extract port number from something like "localhost:3002" or "*:3002"
 			const portMatch = result.match(/:(\d+)/);
 			if (portMatch && portMatch[1]) {
+				console.log(`Detected Rspeedy server running on port ${portMatch[1]}`);
 				return parseInt(portMatch[1], 10);
 			}
 		}
 	} catch (error) {
-		console.log('Could not detect rspeedy port, using default');
+		console.log(
+			'Could not detect rspeedy port, checking for default port availability'
+		);
 	}
-	return 3000; // Default port
+
+	try {
+		const inUseResult = execSync('lsof -i :3000 | grep LISTEN')
+			.toString()
+			.trim();
+		if (!inUseResult) {
+			console.log('Default port 3000 appears available');
+			return 3000;
+		} else {
+			console.log('Default port 3000 is in use, checking 3001');
+			const port3001Result = execSync('lsof -i :3001 | grep LISTEN')
+				.toString()
+				.trim();
+			if (!port3001Result) {
+				console.log('Port 3001 appears available');
+				return 3001;
+			} else {
+				console.log('Using port 3002 as fallback');
+				return 3002;
+			}
+		}
+	} catch (error) {
+		console.log('Default port check failed, using 3000 as fallback');
+		return 3000;
+	}
 }
 
 const ipAddress = getLocalIpAddress();
-const port = detectRspeedyPort(); // Dynamically detect port
+const port = detectRspeedyPort();
 const bundlePath = 'main.lynx.bundle';
 const fullUrl = `http://${ipAddress}:${port}/${bundlePath}?fullscreen=true`;
 
@@ -48,7 +70,6 @@ console.log(`Local IP: ${ipAddress}`);
 console.log(`Port: ${port}`);
 console.log(`URL: ${fullUrl}\n`);
 
-// Generate QR code
 console.log('Scan this QR code with your device:');
 qrcode.generate(fullUrl, { small: false });
 

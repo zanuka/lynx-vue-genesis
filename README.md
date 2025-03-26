@@ -1,30 +1,27 @@
 # vue-lynx-genesis
 
-This is a prototype that integrates Lynx's powerful multi-threaded UI rendering capabilities with Vue's component system, Vite's development environment, and uses webpack to handle the Vue-Lynx integration.
+This is a prototype that integrates Lynx's powerful multi-threaded UI rendering capabilities with Vue's component system, providing a performant mobile-first development experience.
 
-As noted in issue [193](https://github.com/lynx-family/lynx/issues/193) of the official [lynx repo](https://github.com/lynx-family/lynx), support for Vue in Lynx is has been gaining support, so I decided to create this project as a starting point.
+## Current Approach
 
-I'm currently working on porting the logic to a standalone Vite plugin (npm package) to acheive the following: 
+This project now implements a **Vue-only approach** for Lynx integration:
 
-- Simplified Integration: reduce the current complex setup to a single plugin installation and minimal configuration
-- Zero-config Option: could provide sensible defaults that work out-of-the-box for most Vue projects
-- Consistent Implementation: ensure best practices are followed automatically across different projects
+- **Vue-Centric Architecture**: Full focus on Vue 3 components with Lynx integration
+- **Simplified Configuration**: Uses the `@rsbuild/plugin-vue` along with custom Lynx configuration
+- **iOS/Android Support**: Cross-platform mobile development from a single Vue codebase
+- **Component-Based Design**: Structured for optimal reuse across platforms
 
-The integration allows Vue applications to achieve smooth 60+ FPS animations, jank-free scrolling, and responsive interfaces by offloading business logic to a separate thread while keeping the UI rendering thread free for user interactions. 
+The integration allows Vue applications to achieve smooth 60+ FPS animations, jank-free scrolling, and responsive interfaces by offloading business logic to a separate thread while keeping the UI rendering thread free for user interactions.
 
-This could represent a significant advancement for Vue developers looking to build high-performance applications that feel as responsive as native apps.
-
-more implementation notes in [TL;DR:](docs/tldr.md)
+Comprehensive documentation is available in the [Vue Lynx Plugin Guide](docs/plugin-vue.md).
 
 ## Cross-Platform Support
 
-This project now supports building for multiple platforms from a single codebase:
+This project supports building for multiple platforms from a single codebase:
 
 - **Web** (default)
 - **iOS**
 - **Android**
-
-It's not set in stone, but am experimenting with a flexible component architecture that allows sharing code across platforms while still enabling platform-specific optimizations when needed.
 
 ### Platform-Specific Build Commands
 
@@ -35,14 +32,14 @@ bun run dev:lynx       # Lynx-enabled web development
 bun run build          # Build for web production
 
 # iOS
-bun run dev:ios        # Development build for iOS
-bun run dev:ios-qr     # Development build for iOS with QR code
-bun run dev:ios-simulator  # Opens directly in iOS simulator
-bun run build:ios      # Production build for iOS
+bun run dev:ios:vue        # Development build for iOS with Vue
+bun run dev:ios-qr:vue     # Development build for iOS with QR code using Vue
+bun run build:ios:vue      # Production build for iOS with Vue
 
-# Android
-bun run dev:android    # Development build for Android
-bun run build:android  # Production build for Android
+# Simplified Configuration
+bun run dev:ios:vue:simple        # Development with simplified Vue config
+bun run dev:ios-qr:vue:simple     # Development with QR code using simplified Vue config
+bun run build:ios:vue:simple      # Production build with simplified Vue config
 ```
 
 For detailed information on Lynx workflows and development commands, see [Lynx Workflows](LYNX-WORKFLOWS.md).
@@ -210,107 +207,78 @@ Lynx is a high-performance UI framework that uses a dual-thread architecture to 
 
 This separation ensures that UI operations never block the main thread, resulting in smoother animations and more responsive interfaces.
 
-### integration approach
+### Integration Approach
 
-1. **Custom Vue Components for Lynx**
-   - Uses custom elements like `<view>` and `<text>` instead of standard HTML
-   - Components automatically work with the dual-thread architecture
+1. **Vue Components for Lynx**
+   - Uses standard Vue Single File Components
+   - Integrates with Lynx's dual-thread architecture
+   - Provides a familiar development experience for Vue developers
 
 2. **Thread Communication**
    - Background worker thread for business logic and state management
    - Main thread for UI rendering and user interaction
    - Message-based communication between threads
 
-3. **Vite Plugin Integration**
-   - Custom Vite plugin to handle Lynx-specific elements
-   - Vue compiler configuration to treat Lynx elements as custom elements
+3. **Rspeedy Plugin Integration**
+   - Uses `@rsbuild/plugin-vue` for Vue component support
+   - Optimizes for Lynx runtime with custom configuration
    - Seamless developer experience with Vue Single File Components
 
-4. **Debugging Tools**
-   - Built-in debug panel to visualize thread communication
-   - Console logging with thread identification
-   - Error handling and fallbacks for robustness
-
-5. **Cross-Platform Component System**
-   - Components organized into platform-specific directories
-   - Automatic platform detection at runtime
-   - Adaptive components that use the right implementation per platform
-
-### Component Types
-
-- **Common Components**: Work universally across all platforms
-- **Platform-Specific Components**: Optimized for specific platforms (iOS, Android, web)
-- **Adaptive Components**: Automatically use the right implementation based on platform
+4. **Simplified Configuration**
+   - Minimal configuration needed for Vue-Lynx integration
+   - Support for both standard and simplified configurations
+   - Built-in iOS and Android platform targeting
 
 ### Example Component
 
 ```vue
 <!-- LynxCounter.vue -->
 <template>
-  <view class="counter-container">
-    <text class="counter-title">Lynx Counter Demo</text>
-    <text class="counter-value">Count: {{ count }}</text>
-    <view class="button-row">
+  <div class="counter-container">
+    <h2 class="counter-title">Lynx Counter Demo</h2>
+    <p class="counter-value">Count: {{ count }}</p>
+    <div class="button-row">
       <button @click="decrement">-</button>
       <button @click="increment">+</button>
       <button @click="reset">Reset</button>
-    </view>
-  </view>
+    </div>
+  </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  name: 'LynxCounter',
-  setup() {
-    const count = ref(0);
-    
-    function increment() {
-      count.value++;
-      // In a real app, you'd send this to the worker thread:
-      // worker.postMessage({ type: 'METHOD_CALL', method: 'increment' });
-    }
-    
-    function decrement() {
-      count.value--;
-    }
-    
-    function reset() {
-      count.value = 0;
-    }
-    
-    return { count, increment, decrement, reset };
-  }
-};
+const count = ref(0);
+
+function increment() {
+  count.value++;
+  // Thread communication could be added here
+}
+
+function decrement() {
+  count.value--;
+}
+
+function reset() {
+  count.value = 0;
+}
 </script>
 ```
 
-### Getting Started with Lynx
+### Getting Started with Vue-Lynx
 
-To start using Lynx in your Vue components:
-
-1. Create components in the `src/components/` directory with names prefixed with "Lynx"
-2. Use Lynx-specific elements like `<view>` and `<text>` instead of `<div>` and `<span>`
-3. Run the Lynx development server with `bun dev:lynx`
-4. View your Lynx components at http://localhost:3000/lynx.html
+1. Install dependencies with `bun install`
+2. Create Vue components in the `src/components/` directory 
+3. Run the development server with `bun run dev:ios:vue:simple`
+4. View the app in the iOS simulator or scan the QR code with a Lynx-compatible device
 
 ### Key Files
 
-- `vite.config.mjs`: Contains Vue configuration for Lynx custom elements
-- `vite-lynx-plugin.js`: Vite plugin for Lynx integration
-- `lynx.html`: Entry point for the Lynx application
-- `src/main.ts`: Standard web application entry point, loads App.vue and web components
-- `src/index.js`: Lynx mobile platforms entry point, loads Mobile.vue and initializes Vue-Lynx adapter
-- `src/lynx-main.ts`: Main thread entry point for Lynx thread model
-- `src/lynx-worker.ts`: Worker thread for background business logic
-- `src/mobile.lynx`: Mobile-specific component entry point
-- `src/main.lynx`: Web-specific Lynx entry point
-- `src/components/common/LynxHelloWorld.vue`: Example common component
-- `src/components/ios/iOSActionButton.vue`: Example iOS-specific component
-- `src/components/android/AndroidActionButton.vue`: Example Android-specific component
-- `lynx.ios.config.js`: iOS-specific build configuration
-- `lynx.android.config.js`: Android-specific build configuration
+- `lynx.vue.simple.config.js`: Simplified configuration for Vue Lynx builds
+- `lynx.vue.config.ts`: Full configuration with plugin-based approach
+- `src/lynx-main.ts`: Main thread entry point for Lynx
+- `src/App.vue`: Main Vue application component
+- `src/types/vue-lynx.d.ts`: TypeScript definitions for Vue Lynx runtime
 
 ## Project Structure
 

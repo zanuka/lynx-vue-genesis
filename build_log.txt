@@ -1,0 +1,701 @@
+$ bun run build:loaders && bun x rspeedy dev -c lynx.ios.config.ts
+$ tsc -p tsconfig.loaders.json && bun run copy:loaders
+$ mkdir -p dist/loaders dist/runtime && cp -r dist/loaders/ dist/ && cp -r dist/runtime/ dist/ && [ -f vue-lynx-entry.js ] && cp vue-lynx-entry.js dist/ || echo 'No entry file to copy'
+No entry file to copy
+  Rspeedy v0.8.6 (Rsbuild v1.2.19, Rspack v1.2.8)
+
+info    port 3000 is in use, using port 3003.
+start   build started...
+ready   built in 0.34 s
+info    Restart because /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/lynx.ios.config.ts is changed.
+
+start   build started...
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+info    Restart because /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/lynx.ios.config.ts is changed.
+
+start   build started...
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+info    Restart because /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/lynx.ios.config.ts is changed.
+
+start   build started...
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxCounter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxCounter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxCounter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxCounter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxCounter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxHelloWorld.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxHelloWorld.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxDebugPanel.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxDebugPanel.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building components/common/LynxFooter.vue
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxFooter.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxTest.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxTest.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+ready   built in 0.04 s
+warn    Compile Warning: 
+⚠ DefinePlugin:
+  │ Conflicting values for '__VUE_PROD_DEVTOOLS__' (false !== "true")
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+ready   built in 0.02 s
+warn    Compile Warning: 
+⚠ DefinePlugin:
+  │ Conflicting values for '__VUE_PROD_DEVTOOLS__' (false !== "true")
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+ready   built in 0.02 s
+warn    Compile Warning: 
+⚠ DefinePlugin:
+  │ Conflicting values for '__VUE_PROD_DEVTOOLS__' (false !== "true")
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxTestMinimal.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/LynxTestMinimal.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+ready   built in 0.03 s
+warn    Compile Warning: 
+⚠ DefinePlugin:
+  │ Conflicting values for '__VUE_PROD_DEVTOOLS__' (false !== "true")
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+error   Compile error: 
+Failed to compile, check the errors for troubleshooting.
+File: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/BasicLynxComponent.vue:1:1
+  × ModuleError: At least one <template> or <script> is required in a single file component. /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/src/components/common/BasicLynxComponent.vue (from: /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0])
+  │     at parse$1 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1864:7)
+  │     at Object.loader (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rsbuild/plugin-vue/node_modules/vue-loader/dist/index.js:64:36)
+  │     at LOADER_EXECUTION (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5754:18)
+  │     at runSyncOrAsync2 (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:5755:6)
+  │     at node:internal/util:431:7
+  │     at new Promise (<anonymous>)
+  │     at runSyncOrAsync2 (node:internal/util:417:12)
+  │     at runLoaders (/Users/deeda/workspace/zanuka-github/vue-lynx-genesis/node_modules/@rspack/core/dist/index.js:6271:56)
+
+ @ ./src/lynx-main.ts
+
+start   building src/lynx-main.ts
+Asset index.js not found, skipping main thread info update
+Asset mobile.js not found, skipping main thread info update
+ready   built in 0.02 s
+warn    Compile Warning: 
+⚠ DefinePlugin:
+  │ Conflicting values for '__VUE_PROD_DEVTOOLS__' (false !== "true")
+
+info    Restart because /Users/deeda/workspace/zanuka-github/vue-lynx-genesis/lynx.ios.config.ts is changed.
+
+start   build started...
+SYNCHRONOUS TERMINATION NOTICE: When explicitly exiting the process via process.exit or via a parent process, asynchronous tasks in your exitHooks will not run. Either remove these tasks, use gracefulExit() instead of process.exit(), or ensure your parent process sends a SIGINT to the process running this code.
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at doListen (node:net:2116:7)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1925:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 3000
+}
+
+Node.js v20.15.1
+error: script "dev:ios" exited with code 1
