@@ -16,6 +16,62 @@ This could represent a significant advancement for Vue developers looking to bui
 
 more implementation notes in [TL;DR:](docs/tldr.md)
 
+## Cross-Platform Support
+
+This project now supports building for multiple platforms from a single codebase:
+
+- **Web** (default)
+- **iOS**
+- **Android**
+
+It's not set in stone, but am experimenting with a flexible component architecture that allows sharing code across platforms while still enabling platform-specific optimizations when needed.
+
+### Platform-Specific Build Commands
+
+```bash
+# Web
+bun run dev            # Standard web development
+bun run dev:lynx       # Lynx-enabled web development
+bun run build          # Build for web production
+
+# iOS
+bun run dev:ios        # Development build for iOS
+bun run dev:ios-qr     # Development build for iOS with QR code
+bun run dev:ios-simulator  # Opens directly in iOS simulator
+bun run build:ios      # Production build for iOS
+
+# Android
+bun run dev:android    # Development build for Android
+bun run build:android  # Production build for Android
+```
+
+For detailed information on Lynx workflows and development commands, see [Lynx Workflows](LYNX-WORKFLOWS.md).
+
+### Component Architecture
+
+Components are organized by platform with intelligent platform detection:
+
+```mermaid
+graph TD
+    A[src/components/] --> B[common/]
+    A --> C[ios/]
+    A --> D[android/]
+    A --> E[web/]
+    B --> F[Shared components]
+    C --> G[iOS-specific components]
+    D --> H[Android-specific components]
+    E --> I[Web-specific components]
+    J[mobile.lynx] --> K[Platform Detection]
+    K --> L[Import appropriate components]
+```
+
+This architecture allows you to:
+1. Write once, run anywhere with common components
+2. Create platform-specific optimizations when needed
+3. Use adaptive components that automatically use the right implementation for each platform
+
+For detailed information on the cross-platform architecture, see [Cross-Platform Architecture](docs/cross-platform-details.md).
+
 ### Counter Demo
 After running `bun install` and `bun run dev:lynx` you should see this demo app running a basic counter component at http://127.0.0.1:3000
 
@@ -47,6 +103,8 @@ The debug panel shows an example of the following Lynx features:
   - Custom Vite plugin for seamless Vue-Lynx integration
   - Debug panel for visualizing thread communication
   - Fallback handling for graceful degradation
+  - **Cross-platform support** for Web, iOS, and Android
+  - **Platform-adaptive components** that automatically use the right implementation
 
 - 🛠️ **Development Tools**
   - [Vite](https://github.com/vitejs/vite) for lightning-fast development
@@ -81,6 +139,9 @@ bun dev
 # Start Lynx development server
 bun dev:lynx
 
+# Start iOS simulator
+bun dev:ios-simulator
+
 # Build for production
 bun build
 
@@ -95,15 +156,37 @@ bun test
 
 - `bun dev` - Start development server
   - Runs the traditional Vue application without Lynx integration
+  - Uses `src/main.ts` as the entry point
   - Useful for compatibility testing and comparing performance
   - Provides a fallback development environment
 
 - `bun dev:lynx` - Start Lynx development server
   - Opens the application with Lynx integration at `/lynx.html`
+  - Uses `src/main.ts` as the entry point with Lynx web components
   - Demonstrates the multi-threaded UI architecture
   - Shows real-time thread communication in the debug panel
 
-- `bun build` - Build for production
+- `bun dev:ios` - Start iOS development server
+  - Uses `src/index.js` as the entry point
+  - Builds the app with iOS-specific configurations
+  - For testing on iOS devices or simulator
+
+- `bun dev:ios-simulator` - Start iOS simulator development server
+  - Uses `src/index.js` as the entry point
+  - Automatically opens the app in the iOS simulator
+  - Great for testing iOS-specific components
+
+- `bun dev:android` - Start Android development server
+  - Uses `src/index.js` as the entry point
+  - Builds the app with Android-specific configurations
+  - For testing on Android devices or emulator
+
+- `bun build` - Build for production (web)
+  - Uses `src/main.ts` as the entry point
+- `bun build:ios` - Build for iOS
+  - Uses `src/index.js` as the entry point
+- `bun build:android` - Build for Android
+  - Uses `src/index.js` as the entry point
 - `bun build:lynx` - Build Lynx bundle
 - `bun serve` - Preview production build
 - `bun test` - Run all tests
@@ -147,6 +230,17 @@ This separation ensures that UI operations never block the main thread, resultin
    - Built-in debug panel to visualize thread communication
    - Console logging with thread identification
    - Error handling and fallbacks for robustness
+
+5. **Cross-Platform Component System**
+   - Components organized into platform-specific directories
+   - Automatic platform detection at runtime
+   - Adaptive components that use the right implementation per platform
+
+### Component Types
+
+- **Common Components**: Work universally across all platforms
+- **Platform-Specific Components**: Optimized for specific platforms (iOS, Android, web)
+- **Adaptive Components**: Automatically use the right implementation based on platform
 
 ### Example Component
 
@@ -206,18 +300,28 @@ To start using Lynx in your Vue components:
 - `vite.config.mjs`: Contains Vue configuration for Lynx custom elements
 - `vite-lynx-plugin.js`: Vite plugin for Lynx integration
 - `lynx.html`: Entry point for the Lynx application
-- `src/lynx-main.ts`: Main thread entry point
-- `src/lynx-worker.ts`: Worker thread for business logic
-- `src/components/LynxHelloWorld.vue`: Example Lynx component
-- `src/components/LynxCounter.vue`: Example counter component
-- `src/components/LynxDebugPanel.vue`: Debug panel for thread visualization
+- `src/main.ts`: Standard web application entry point, loads App.vue and web components
+- `src/index.js`: Lynx mobile platforms entry point, loads Mobile.vue and initializes Vue-Lynx adapter
+- `src/lynx-main.ts`: Main thread entry point for Lynx thread model
+- `src/lynx-worker.ts`: Worker thread for background business logic
+- `src/mobile.lynx`: Mobile-specific component entry point
+- `src/main.lynx`: Web-specific Lynx entry point
+- `src/components/common/LynxHelloWorld.vue`: Example common component
+- `src/components/ios/iOSActionButton.vue`: Example iOS-specific component
+- `src/components/android/AndroidActionButton.vue`: Example Android-specific component
+- `lynx.ios.config.js`: iOS-specific build configuration
+- `lynx.android.config.js`: Android-specific build configuration
 
 ## Project Structure
 
 ```
 src/
 ├── assets/        # Static assets
-├── components/    # Vue components (including Lynx components)
+├── components/    # Vue components
+│   ├── common/    # Components shared across all platforms
+│   ├── ios/       # iOS-specific components
+│   ├── android/   # Android-specific components
+│   └── web/       # Web-specific components
 ├── composables/   # Vue composables
 ├── layouts/       # Layout components
 ├── router/        # Vue Router configuration
@@ -225,9 +329,59 @@ src/
 ├── styles/        # Global styles
 ├── types/         # TypeScript types
 ├── views/         # Page components
+├── mobile.lynx    # Entry point for mobile platforms
+├── main.lynx      # Entry point for web
 ├── lynx-main.ts   # Lynx main thread entry
-└── lynx-worker.ts # Lynx worker thread
+├── lynx-worker.ts # Lynx worker thread
+├── main.ts        # Web application entry point
+└── index.js       # Lynx mobile platforms entry point
 ```
+
+## Entry Point Architecture
+
+This project utilizes a dual entry point architecture to support different platforms and environments:
+
+### 1. src/main.ts (Web/Browser Entry Point)
+
+The `src/main.ts` file serves as the standard entry point for the Vue application when targeting web browsers:
+
+- Creates a Vue app with `App.vue` as the root component
+- Sets up routing and global components
+- Loads necessary CSS and Lynx web components
+- Mounts to the standard `#app` element in the DOM
+
+**Used by:** `bun run dev` and `bun run build` commands (standard web development)
+
+### 2. src/index.js (Lynx Mobile Entry Point)
+
+The `src/index.js` file serves as the specialized entry point for Lynx mobile platforms:
+
+- Initializes the Vue-Lynx adapter for thread communication
+- Creates a Vue app with `Mobile.vue` as the root component (different from web)
+- Uses environment detection to handle both Lynx and browser environments
+- Applies different mounting strategies based on the detected environment
+- Exports the app instance for Lynx runtime
+
+**Used by:** `bun run dev:ios`, `bun run dev:android`, `bun run build:ios`, and `bun run build:android` commands
+
+### Build Configuration
+
+The entry points are specified in different build configurations:
+
+1. **Vite Configuration**: Uses `src/main.ts` by default for web development
+2. **Lynx Configuration Files**:
+   - `lynx.ios.config.js` specifies `entry: './src/index.js'` for iOS builds
+   - `lynx.android.config.js` specifies `entry: './src/index.js'` for Android builds
+
+This dual entry point approach allows the project to:
+- Support multiple platform targets with optimized experiences
+- Share common components and logic across platforms
+- Apply platform-specific adaptations at the root level
+- Maintain backward compatibility with standard web development
+
+### TypeScript Migration
+
+While `main.ts` already uses TypeScript, we're gradually migrating all JavaScript files (including `index.js`) to TypeScript for better type safety and developer experience.
 
 ## Testing Lynx Components
 

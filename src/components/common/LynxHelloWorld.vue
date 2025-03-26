@@ -20,8 +20,8 @@ export default {
 	props: {
 		msg: {
 			type: String,
-			default: 'Hello, Lynx + Vue!'
-		}
+			default: 'Hello, Lynx + Vue!',
+		},
 	},
 	setup(props) {
 		console.log('LynxHelloWorld setup function called with props:', props);
@@ -41,7 +41,7 @@ export default {
 
 		return {
 			count,
-			increment
+			increment,
 		};
 	},
 	mounted() {
@@ -49,7 +49,7 @@ export default {
 	},
 	updated() {
 		console.log('LynxHelloWorld component updated');
-	}
+	},
 };
 </script>
 

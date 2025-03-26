@@ -1,7 +1,0 @@
-<import name="HomePage" src="./pages/HomePage.lynx" />
-<import name="HelloWorld" src="./components/HelloWorld.lynx" />
-
-<view style="flex: 1; flex-direction: column; background-color: #ffffff;">
-  <HomePage />
-  <HelloWorld />
-</view> 

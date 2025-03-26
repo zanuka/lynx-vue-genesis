@@ -36,17 +36,27 @@
 			<view class="state-container">
 				<text class="state-item">Count: {{ state.count }}</text>
 				<text class="state-item">Last Updated: {{ state.lastUpdated }}</text>
-				<text v-if="state.message" class="state-item"
+				<text
+					v-if="state.message"
+					class="state-item"
 					>Message: {{ state.message }}</text
 				>
 			</view>
 		</view>
 
 		<view class="debug-actions">
-			<button @click="sendMessage" class="debug-button">
+			<button
+				class="debug-button"
+				@click="sendMessage"
+			>
 				Send Test Message
 			</button>
-			<button @click="clearLogs" class="debug-button">Clear Logs</button>
+			<button
+				class="debug-button"
+				@click="clearLogs"
+			>
+				Clear Logs
+			</button>
 		</view>
 
 		<!-- New features section -->
@@ -55,33 +65,23 @@
 			<view class="feature-list">
 				<view class="feature-item">
 					<text class="bullet">•</text>
-					<text class="feature-text"
-						>Main thread/worker thread separation for UI performance</text
-					>
+					<text class="feature-text">Main thread/worker thread separation for UI performance</text>
 				</view>
 				<view class="feature-item">
 					<text class="bullet">•</text>
-					<text class="feature-text"
-						>Async message-based communication between threads</text
-					>
+					<text class="feature-text">Async message-based communication between threads</text>
 				</view>
 				<view class="feature-item">
 					<text class="bullet">•</text>
-					<text class="feature-text"
-						>Real-time state synchronization across thread boundaries</text
-					>
+					<text class="feature-text">Real-time state synchronization across thread boundaries</text>
 				</view>
 				<view class="feature-item">
 					<text class="bullet">•</text>
-					<text class="feature-text"
-						>Bidirectional message flow with timestamps</text
-					>
+					<text class="feature-text">Bidirectional message flow with timestamps</text>
 				</view>
 				<view class="feature-item">
 					<text class="bullet">•</text>
-					<text class="feature-text"
-						>Live monitoring of the Lynx thread communication model</text
-					>
+					<text class="feature-text">Live monitoring of the Lynx thread communication model</text>
 				</view>
 			</view>
 		</view>
@@ -107,25 +107,19 @@ export default {
 		const state = reactive({
 			count: 0,
 			lastUpdated: 'Not yet updated',
-			message: ''
+			message: '',
 		});
 
 		// Add a log to the main thread logs
 		function addMainThreadLog(message) {
 			console.log('Main thread log:', message);
-			mainThreadLogs.value = [message, ...mainThreadLogs.value].slice(
-				0,
-				MAX_LOGS
-			);
+			mainThreadLogs.value = [message, ...mainThreadLogs.value].slice(0, MAX_LOGS);
 		}
 
 		// Add a log to the worker thread logs
 		function addWorkerThreadLog(message) {
 			console.log('Worker thread log:', message);
-			workerThreadLogs.value = [message, ...workerThreadLogs.value].slice(
-				0,
-				MAX_LOGS
-			);
+			workerThreadLogs.value = [message, ...workerThreadLogs.value].slice(0, MAX_LOGS);
 		}
 
 		// Update the state
@@ -144,7 +138,7 @@ export default {
 				addWorkerThreadLog(`Received: ${message}`);
 				updateState({
 					message,
-					lastUpdated: new Date().toISOString()
+					lastUpdated: new Date().toISOString(),
 				});
 
 				// Simulate worker response
@@ -177,9 +171,9 @@ export default {
 			workerThreadLogs,
 			state,
 			sendMessage,
-			clearLogs
+			clearLogs,
 		};
-	}
+	},
 };
 </script>
 

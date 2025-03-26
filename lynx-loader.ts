@@ -1,7 +1,8 @@
 // A simple webpack loader for .lynx files
 // This is just a placeholder - a real implementation would need to parse Lynx templates properly
+import type { LoaderContext } from 'webpack';
 
-export default function (source) {
+export default function (this: LoaderContext<any>, source: string): void {
 	const callback = this.async();
 
 	try {
@@ -55,13 +56,13 @@ export default function (source) {
 
 		callback(null, result);
 	} catch (err) {
-		callback(err);
+		callback(err as Error);
 	}
 }
 
 // Helper function to parse attributes
-function parseAttributes(attrsString) {
-	const result = {};
+function parseAttributes(attrsString: string): Record<string, string> {
+	const result: Record<string, string> = {};
 	const matches = attrsString.matchAll(/([a-zA-Z0-9_-]+)="([^"]*)"/g);
 
 	for (const match of matches) {
@@ -70,4 +71,4 @@ function parseAttributes(attrsString) {
 	}
 
 	return result;
-}
+} 

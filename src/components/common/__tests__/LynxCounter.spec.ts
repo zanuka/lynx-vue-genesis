@@ -3,7 +3,7 @@
  */
 import { shallowMount } from '@vue/test-utils';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import LynxCounter from './LynxCounter.vue';
+import LynxCounter from './common/LynxCounter.vue';
 
 // Register Lynx elements as custom elements directly
 // This can help avoid timing issues with dynamically registering elements

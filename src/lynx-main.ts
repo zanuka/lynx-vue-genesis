@@ -5,10 +5,10 @@
 import { createApp, h } from 'vue';
 
 // Import our components
-import LynxCounter from './components/LynxCounter.vue';
-import LynxDebugPanel from './components/LynxDebugPanel.vue';
-import LynxFooter from './components/LynxFooter.vue';
-import LynxHelloWorld from './components/LynxHelloWorld.vue';
+import LynxCounter from './components/common/LynxCounter.vue';
+import LynxDebugPanel from './components/common/LynxDebugPanel.vue';
+import LynxFooter from './components/common/LynxFooter.vue';
+import LynxHelloWorld from './components/common/LynxHelloWorld.vue';
 // Add debugging
 console.log('Lynx main thread script starting');
 
@@ -56,11 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('Unknown message type from worker:', type);
         }
       };
-
-      // Handle worker errors
-      worker.onerror = (error) => {
-        console.error('Worker error:', error);
-      };
     } else {
       console.warn('Web Workers are not supported in this browser');
     }
@@ -82,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             onVnodeMounted() {
               console.log('LynxHelloWorld mounted');
-            }
+            },
           }),
           h(LynxCounter),
           h(LynxDebugPanel),
-          h(LynxFooter)
+          h(LynxFooter),
         ]);
-      }
+      },
     });
 
     // Mount the app to the DOM
@@ -104,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
           worker?.postMessage({
             type: 'METHOD_CALL',
             method: 'setMessage',
-            params: ['Message from main thread']
+            params: ['Message from main thread'],
           });
         } catch (e) {
           console.error('Failed to send message to worker:', e);
@@ -123,4 +118,4 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
   }
-}); 
+});

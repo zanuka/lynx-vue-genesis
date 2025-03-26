@@ -1,20 +1,18 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import type { Plugin, ViteDevServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Simple placeholder Lynx plugin for Vite
-export default function viteLynxPlugin() {
+export default function viteLynxPlugin(): Plugin {
 	return {
 		name: 'vite-lynx-plugin',
 
 		// Transform Vue SFCs - simplified version without imports
-		transform(code, id) {
+		transform(code: string, id: string) {
 			// Only process .vue files that have Lynx in the name
-			if (
-				!id.endsWith('.vue') ||
-				(!id.includes('Lynx') && !id.includes('lynx'))
-			) {
+			if (!id.endsWith('.vue') || (!id.includes('Lynx') && !id.includes('lynx'))) {
 				return null;
 			}
 
@@ -25,7 +23,7 @@ export default function viteLynxPlugin() {
 		},
 
 		// Handle asset serving
-		configureServer(server) {
+		configureServer(server: ViteDevServer) {
 			// Simple pass-through middleware
 			server.middlewares.use((req, res, next) => {
 				next();
@@ -35,6 +33,6 @@ export default function viteLynxPlugin() {
 		// Simple config that doesn't do anything special
 		config(config) {
 			return config;
-		}
+		},
 	};
 }

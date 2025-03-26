@@ -5,14 +5,14 @@
 			"@/*": ["src/*"]
 		},
 		"target": "ESNext",
-		"module": "ESNext",
+		"module": "NodeNext",
 		"lib": ["ESNext", "dom"],
 		"noEmit": true,
 		"strict": true,
 		"allowJs": true,
 		"jsx": "preserve",
 		"noImplicitAny": false,
-		"moduleResolution": "node",
+		"moduleResolution": "NodeNext",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
@@ -25,8 +25,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"typeRoots": [
 			"node_modules/@types",
-			"./cypress/support",
-			"./node_modules/vitest/types"
+			"./node_modules/vitest/types",
+			"./node_modules/@lynx-js/rspeedy/types"
 		],
 		"types": ["node"]
 	},
@@ -37,9 +37,6 @@
 		"src/**/*.tsx",
 		"src/**/*.vue",
 		"src/**/*.html",
-		"cypress/**/*.cy.ts",
-		"cypress.d.ts",
-		"cypress/support/index.d.ts",
 		"test/vitest-setup.ts"
 	],
 	"exclude": ["node_modules"],

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import HelloWorld from './components/common/HelloWorld.vue';
 
 // Optional: Detect when Lynx is initialized
 onMounted(() => {

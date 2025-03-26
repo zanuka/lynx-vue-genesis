@@ -51,3 +51,6 @@ bun.lockb
 .husky
 .cache
 temp
+
+# vscode
+.vscode/*
