@@ -1,6 +1,3 @@
-/**
- * Vue Lynx build configuration
- */
 import { pluginQRCode } from '@lynx-js/qrcode-rsbuild-plugin';
 import { defineConfig } from '@lynx-js/rspeedy';
 import { pluginVueLynx } from './plugins/vue-lynx-rsbuild-plugin/index.js';
@@ -40,18 +37,15 @@ export default defineConfig({
 	tools: {
 		rspack: {
 			optimization: {
-				// Completely disable code splitting
 				runtimeChunk: false,
 				splitChunks: false,
 			},
 			output: {
-				// Override rspack output to use .lynx.bundle extension
 				filename: '[name].lynx.bundle',
 			},
 		},
 	},
 	plugins: [
-		// Add our custom Vue Lynx plugin
 		pluginVueLynx({
 			enableCSSSelector: true,
 			enableParallelElement: true,
@@ -60,12 +54,11 @@ export default defineConfig({
 		}),
 		pluginQRCode({
 			schema(url) {
-				// Open the page in LynxExplorer in full screen mode
 				return `${url}?fullscreen=true`;
 			},
 		}),
 	],
 	environments: {
-		ios: {}, // Only iOS environment
+		ios: {},
 	},
-}); 
+});

@@ -30,7 +30,6 @@ export default {
 				options: {
 					appendTsSuffixTo: [/\.vue$/]
 				}
-				// Handle TypeScript files
 			},
 
 			{

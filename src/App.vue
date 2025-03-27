@@ -18,8 +18,6 @@ onMounted(() => {
 
 <template>
 	<div class="app">
-		<h1>Vue Lynx Genesis</h1>
-		<p>Welcome to the Vue Lynx framework</p>
 		<MiniComponent />
 		<div>
 			<header>

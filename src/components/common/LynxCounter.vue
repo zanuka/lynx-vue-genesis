@@ -6,7 +6,7 @@
 -->
 <template>
 	<view class="counter-container">
-		<text class="counter-title">Lynx Counter Demo</text>
+		<text class="counter-title">Basic Counter Component</text>
 		<text class="counter-value">Count: {{ count }}</text>
 		<view class="button-row">
 			<button @click="decrement">-</button>
@@ -80,14 +80,14 @@ export default defineComponent({
 }
 
 .counter-title {
-	font-size: 1.5rem;
+	font-size: 1rem;
 	font-weight: bold;
 	margin-bottom: 1rem;
 	color: #333;
 }
 
 .counter-value {
-	font-size: 2rem;
+	font-size: 1rem;
 	font-weight: bold;
 	margin: 1rem 0;
 	color: #0066cc;
