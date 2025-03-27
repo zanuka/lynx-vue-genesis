@@ -25,7 +25,8 @@
 		"typeRoots": [
 			"node_modules/@types",
 			"./node_modules/vitest/types",
-			"./node_modules/@lynx-js/rspeedy/types"
+			"./node_modules/@lynx-js/rspeedy/types",
+			"./types"
 		],
 		"types": ["node"]
 	},

@@ -192,6 +192,61 @@ bun run dev:ios
 bun run dev:android
 ```
 
+## Current Approach vs. Full Runtime Integration
+
+Our current approach focuses on bundle transformation to make Vue applications compatible with the Lynx Explorer app. However, examining the official [Lynx React implementation](https://github.com/lynx-family/lynx-stack/blob/main/packages/react/runtime/src/index.ts) reveals a more sophisticated integration that we should aim for:
+
+### Current Approach (Bundle Transformation)
+- Transforms the output of rspeedy builds to include proper Lynx headers and metadata
+- Adds the required JavaScript content with bundle metadata
+- Creates binary bundles with the correct format for iOS/Android
+- Minimal integration that allows basic Vue apps to run in Lynx Explorer
+
+### Full Runtime Integration (Like React)
+The official Lynx React implementation provides deeper integration:
+
+1. **Framework Adaptation**: Uses Preact as its foundation, re-exporting React APIs
+2. **Custom Hooks Implementation**: Custom implementations of React hooks adapted for Lynx
+3. **Lazy Loading**: Special implementations for lazy loading that work across threads
+4. **Threading Model**: Explicit handling of main thread vs background thread code
+5. **Custom Components**: Lynx-specific components and APIs
+
+### Roadmap to Full Vue Runtime for Lynx
+
+To achieve parity with the React implementation, we should:
+
+1. **Vue Core Adaptation**:
+   - Create a lightweight Vue runtime that adapts Vue's rendering to Lynx
+   - Implement custom renderers that target Lynx's Element PAPI instead of DOM
+
+2. **Composition API Integration**:
+   - Adapt Vue's composition API (ref, reactive, computed, etc.) to work with Lynx
+   - Create Lynx-specific composables for platform features
+
+3. **Threading Model**:
+   - Implement `mainThreadLazy` and `backgroundLazy` equivalents for Vue components
+   - Create a thread communication system for Vue components
+
+4. **Custom Vue Plugin**:
+   - Develop a plugin that registers Lynx-specific components and directives
+   - Provide utilities for working with Lynx features from Vue components
+
+5. **Build System Integration**:
+   - Create an advanced build pipeline that properly handles thread splitting
+   - Enhance the current rspeedy plugin to handle Vue component compilation for Lynx
+
+### Implementation Strategy
+
+The long-term strategy involves:
+
+1. Start with the current bundle transformation approach to get basic Vue apps running
+2. Progressively implement the runtime adapter components
+3. Create a custom Vue plugin for Lynx-specific functionality
+4. Develop proper thread communication and splitting for Vue components
+5. Package everything into a standalone `@lynx-js/vue` package similar to `@lynx-js/react`
+
+This gradual approach allows us to deliver working applications while building toward a more robust integration over time.
+
 ## Future Improvements
 
 1. **More Complete Element Mapping** - Expand the mapping between Vue elements and Lynx elements.

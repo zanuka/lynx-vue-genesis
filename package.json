@@ -1,6 +1,6 @@
 {
 	"name": "vue-vite-lynx-genesis",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"license": "Apache-2.0",
 	"engines": {
 		"node": ">=20",
@@ -36,10 +36,19 @@
 		"dev:ios-simulator": "bun run build:loaders && (sleep 5 && bun run qrcode && echo '\nNow copy the URL shown above and paste it into the iOS simulator.\n') & npx rspeedy dev -c lynx.ios.config.ts --open",
 		"install:vue-lynx": "mkdir -p runtime && mkdir -p loaders",
 		"build:ios:vue": "bun run build:loaders && bun x rspeedy build -c lynx.vue.config.ts",
+		"build:ios:vue:bundle": "bun run build:ios:vue && node scripts/create-ios-lynx-bundle.js",
 		"dev:ios:vue": "bun run build:loaders && bun x rspeedy dev -c lynx.vue.config.ts",
-		"dev:ios-qr:vue": "bun run build:loaders && (sleep 5 && bun run qrcode && echo '\nDevelopment server is running in hot-reload mode. Copy the URL above to your simulator.\nPress Ctrl+C to stop.\n') & bun x rspeedy dev -c lynx.vue.config.ts",
+		"dev:ios-qr:vue": "bun run build:loaders && (sleep 5 && bun run qrcode && echo '\nDevelopment server is running in hot-reload mode. Copy the URL above to your simulator.\nPress Ctrl+C to stop.\n') & bun x rspeedy dev -c lynx.vue.config.ts --write-to-disk && node scripts/create-ios-lynx-bundle.js --watch",
 		"logs:ios:lynx": "xcrun simctl spawn booted log stream --predicate 'subsystem contains \"Lynx\"' --level debug",
-		"logs:ios:all": "xcrun simctl spawn booted log stream"
+		"logs:ios:all": "xcrun simctl spawn booted log stream",
+		"serve:ios:vue": "bun run build:loaders && node scripts/create-ios-lynx-bundle.js && cd dist/vue-lynx && bun run simple-server.js",
+		"ios": "./scripts/ios-build-and-serve.sh",
+		"simple:ios": "./scripts/simple-ios-build-and-serve.sh",
+		"lynx:build": "bun run build:loaders && bun x rspeedy build -c lynx.vue.config.ts && node scripts/transform-lynx-bundle.js",
+		"lynx:dev": "bun run build:loaders && bun x rspeedy dev -c lynx.vue.config.ts",
+		"lynx:preview": "bun x rspeedy preview -c lynx.vue.config.ts",
+		"lynx:ios": "bun run lynx:build && (sleep 2 && bun run qrcode) & bun x rspeedy preview -c lynx.vue.config.ts",
+		"lynx:ios:run": "./scripts/lynx-ios.sh"
 	},
 	"dependencies": {
 		"@eslint/js": "^9.23.0",

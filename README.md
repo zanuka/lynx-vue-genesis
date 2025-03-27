@@ -73,12 +73,12 @@ For detailed information on the cross-platform architecture, see [Cross-Platform
 ### Counter Demo
 After running `bun install` and `bun run dev:lynx` you should see this demo app running a basic counter component at http://127.0.0.1:3000
 
-![Vue-Lynx Counter Component](/src/assets/vue-lynx-counter.png)
+![Vue-Lynx Counter Component](/src/assets/vue-lynx-genesis.png)
 
 ### Debug Panel
 In addition, there's a debug panel that will load below the counter.
 
-![Vue-Lynx Debug Panel](/src/assets/vue-lynx-debug_new.png)
+![Vue-Lynx Debug Panel](/src/assets/vue-lynx-debug-3.png)
 The debug panel shows an example of the following Lynx features:
 - Main thread/worker thread separation for UI performance
 - async message-based communication between threads
