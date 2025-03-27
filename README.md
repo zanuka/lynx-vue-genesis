@@ -5,6 +5,7 @@ This is a prototype that integrates Lynx's powerful multi-threaded UI rendering 
 ## Current Approach
 
 This project now implements a **Vue-only approach** for Lynx integration:
+I'm currently working on porting the logic to a standalone Vite plugin (npm package) to acheive the following: 
 
 - **Vue-Centric Architecture**: Full focus on Vue 3 components with Lynx integration
 - **Simplified Configuration**: Uses the `@rsbuild/plugin-vue` along with custom Lynx configuration
