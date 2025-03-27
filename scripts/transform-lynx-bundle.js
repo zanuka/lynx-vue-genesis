@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -24,29 +23,30 @@ console.log('Transforming Lynx bundle for iOS...');
 // Read the bundle
 const bundleContent = fs.readFileSync(inputBundlePath, 'utf8');
 
-// Create the JavaScript content with metadata
-const jsContent = `
-// Lynx iOS bundle format metadata
-global.__LYNX_BUNDLE_METADATA__ = {
+// COMPLETELY NEW APPROACH:
+// Create a JSON string that encapsulates the bundle format properly
+const bundleMetadata = {
 	type: 'vue',
 	version: '1.0.0',
 	engine: '1.4.0',
 	platform: 'ios',
 	format: 'lynx-bundle-1',
 	entry: 'main',
-	timestamp: ${Date.now()}
+	timestamp: Date.now()
 };
 
-if (typeof global !== 'undefined' && global.__LYNX_SET_BUNDLE_FORMAT__) {
-	global.__LYNX_SET_BUNDLE_FORMAT__({
-		type: 'vue',
-		version: '1.0.0',
-		engine: '1.4.0',
-		platform: 'ios',
-		format: 'lynx-bundle-1',
-		entry: 'main'
-	});
-}
+// Create the JavaScript content with proper header
+const jsContent = `
+// Lynx Bundle Format JSON
+window.__LYNX_BUNDLE_FORMAT__ = ${JSON.stringify(bundleMetadata)};
+
+// Bundle initialization
+window.addEventListener('load', function() {
+  console.log('Lynx Vue Bundle loaded!');
+  if (typeof window.__LYNX_SET_BUNDLE_FORMAT__ === 'function') {
+    window.__LYNX_SET_BUNDLE_FORMAT__(window.__LYNX_BUNDLE_FORMAT__);
+  }
+});
 
 // Main bundle content
 ${bundleContent}
@@ -55,57 +55,66 @@ ${bundleContent}
 // Convert to buffer
 const contentBuffer = Buffer.from(jsContent, 'utf8');
 
-// Calculate MD5 hash of content
-const md5Hash = crypto.createHash('md5').update(contentBuffer).digest();
+// Create a debug version with minimal content for testing
+const debugContent = `
+// Lynx Bundle Format JSON
+window.__LYNX_BUNDLE_FORMAT__ = ${JSON.stringify(bundleMetadata)};
 
-/*
-	Standard Lynx bundle format:
-	- 8 bytes: "LYNX" + "BNDL" magic identifier
-	- 4 bytes: Version (1.0.0) in little-endian
-	- 4 bytes: Platform ID (1 = iOS) in little-endian
-	- 4 bytes: Format Type (3 = Vue) in little-endian 
-	- 4 bytes: Content size in little-endian
-	- 16 bytes: MD5 hash of content
-	- 4 bytes: Reserved (0)
-	Total header size: 44 bytes
-*/
+// Bundle initialization
+window.addEventListener('load', function() {
+  console.log('Lynx Debug Bundle loaded!');
+  if (typeof window.__LYNX_SET_BUNDLE_FORMAT__ === 'function') {
+    window.__LYNX_SET_BUNDLE_FORMAT__(window.__LYNX_BUNDLE_FORMAT__);
+  }
+  
+  // Create a debug UI to confirm the bundle loaded
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.top = '20px';
+  container.style.left = '20px';
+  container.style.right = '20px';
+  container.style.padding = '20px';
+  container.style.backgroundColor = '#efefef';
+  container.style.borderRadius = '8px';
+  container.style.fontFamily = 'system-ui, sans-serif';
+  container.style.zIndex = '999';
+  
+  const heading = document.createElement('h2');
+  heading.textContent = 'Vue Lynx Debug Bundle';
+  heading.style.color = '#333';
+  heading.style.margin = '0 0 10px 0';
+  
+  const infoText = document.createElement('p');
+  infoText.textContent = 'Bundle loaded successfully at ' + new Date().toLocaleTimeString();
+  infoText.style.color = '#666';
+  
+  container.appendChild(heading);
+  container.appendChild(infoText);
+  document.body.appendChild(container);
+});
+`;
 
-// Create the full Lynx bundle header
-const headerBuffer = Buffer.alloc(44);
+// Convert the debug content to a buffer
+const debugBuffer = Buffer.from(debugContent, 'utf8');
 
-// Add "LYNX" + "BNDL" magic bytes using specific byte values
-headerBuffer[0] = 0x4c; // L
-headerBuffer[1] = 0x59; // Y
-headerBuffer[2] = 0x4e; // N
-headerBuffer[3] = 0x58; // X
-headerBuffer[4] = 0x42; // B
-headerBuffer[5] = 0x4e; // N
-headerBuffer[6] = 0x44; // D
-headerBuffer[7] = 0x4c; // L
+// Write the output file (simple text-based format for now)
+fs.writeFileSync(outputBundlePath, contentBuffer);
 
-// Version 1.0.0 (0x00010000 in little-endian)
-headerBuffer.writeUInt32LE(0x00010000, 8);
+// Create a debug bundle without any binary headers
+const debugDir = path.resolve(distDir, 'debug');
+if (!fs.existsSync(debugDir)) {
+	fs.mkdirSync(debugDir, { recursive: true });
+}
+const debugBundlePath = path.resolve(debugDir, 'simple.lynx.bundle');
+fs.writeFileSync(debugBundlePath, debugBuffer);
 
-// Platform ID (1 = iOS)
-headerBuffer.writeUInt32LE(1, 12);
-
-// Format Type (3 = Vue)
-headerBuffer.writeUInt32LE(3, 16);
-
-// Content size
-headerBuffer.writeUInt32LE(contentBuffer.length, 20);
-
-// MD5 hash of content (16 bytes)
-md5Hash.copy(headerBuffer, 24);
-
-// Reserved bytes (0)
-headerBuffer.writeUInt32LE(0, 40);
-
-// Combine header and content
-const mainBuffer = Buffer.concat([headerBuffer, contentBuffer]);
-
-// Write the output buffer to file
-fs.writeFileSync(outputBundlePath, mainBuffer);
+// Also create a JSON version that might be more compatible
+const jsonBundlePath = path.resolve(debugDir, 'lynx-bundle.json');
+const jsonBundle = {
+	metadata: bundleMetadata,
+	content: debugContent
+};
+fs.writeFileSync(jsonBundlePath, JSON.stringify(jsonBundle, null, 2));
 
 // Also copy to static directory for serving
 const staticDir = path.resolve(distDir, 'static');
@@ -113,24 +122,25 @@ const staticBundlePath = path.resolve(staticDir, 'main.lynx.bundle');
 if (fs.existsSync(staticDir)) {
 	fs.copyFileSync(outputBundlePath, staticBundlePath);
 	console.log(`Also copied bundle to ${staticBundlePath} for serving`);
+
+	// Copy debug bundles to static folder too
+	fs.copyFileSync(
+		debugBundlePath,
+		path.resolve(staticDir, 'simple.lynx.bundle')
+	);
+	fs.copyFileSync(jsonBundlePath, path.resolve(staticDir, 'lynx-bundle.json'));
+	console.log(`Also copied debug bundles to static directory`);
 }
 
-// Print detailed debug information
-console.log(`\nBundle details:`);
-console.log(
-	`Magic Header bytes: ${Buffer.from([0x4c, 0x59, 0x4e, 0x58, 0x42, 0x4e, 0x44, 0x4c]).toString('hex')}`
-);
-console.log(
-	`Magic Header string: ${Buffer.from([0x4c, 0x59, 0x4e, 0x58, 0x42, 0x4e, 0x44, 0x4c]).toString('utf8')}`
-);
-console.log(`Version: 0x${(0x00010000).toString(16)}`);
-console.log(`Platform: iOS (1)`);
-console.log(`Format Type: Vue (3)`);
-console.log(`Content Size: ${contentBuffer.length} bytes`);
-console.log(`MD5 Hash: ${md5Hash.toString('hex')}`);
-
 console.log(`\nBundle Summary:`);
-console.log(`Successfully transformed Lynx bundle at: ${outputBundlePath}`);
-console.log(`Header size: ${headerBuffer.length} bytes`);
-console.log(`Content size: ${contentBuffer.length} bytes`);
-console.log(`Total size: ${mainBuffer.length} bytes`);
+console.log(`Successfully created text-based bundles using JSON format`);
+console.log(
+	`Main bundle at: ${outputBundlePath} (${contentBuffer.length} bytes)`
+);
+console.log(
+	`Debug bundle at: ${debugBundlePath} (${debugBuffer.length} bytes)`
+);
+console.log(`JSON bundle at: ${jsonBundlePath}`);
+console.log(
+	`\nTry loading these in the Lynx Explorer app in the iOS simulator.`
+);

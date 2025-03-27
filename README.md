@@ -45,6 +45,19 @@ bun run build:ios:vue:simple      # Production build with simplified Vue config
 
 For detailed information on Lynx workflows and development commands, see [Lynx Workflows](LYNX-WORKFLOWS.md).
 
+### iOS Bundle Details
+
+```
+once running, manually enter the URL in your Lynx-compatible app.
+
+Additional bundles available at:
+- Debug UI: http://192.168.9.103:3471/simple.lynx.bundle?platform=ios&fullscreen=true
+- Main App: http://192.168.9.103:3471/main.lynx.bundle?platform=ios&fullscreen=true
+- JSON Version: http://192.168.9.103:3471/lynx-bundle.json?platform=ios&fullscreen=true
+
+Access debug options at: http://192.168.9.103:3471/
+```
+
 ### Component Architecture
 
 Components are organized by platform with intelligent platform detection:
