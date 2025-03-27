@@ -22,6 +22,7 @@ test-results/
 .njsproj
 .sln
 .sw?
+.cursor.json  # Cursor IDE config
 
 # Logs
 logs
@@ -51,3 +52,7 @@ bun.lockb
 .husky
 .cache
 temp
+
+# vscode
+.vscode/*
+

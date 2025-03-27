@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ES2021",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"esModuleInterop": true,
+		"outDir": "dist",
+		"declaration": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"lib": ["ES2021", "DOM"]
+	},
+	"include": ["loaders/**/*.ts", "runtime/**/*.ts", "vue-lynx-entry.ts"],
+	"exclude": ["node_modules"]
+}

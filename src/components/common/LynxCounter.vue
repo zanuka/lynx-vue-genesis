@@ -6,7 +6,7 @@
 -->
 <template>
 	<view class="counter-container">
-		<text class="counter-title">Lynx Counter Demo</text>
+		<text class="counter-title">Basic Counter Component</text>
 		<text class="counter-value">Count: {{ count }}</text>
 		<view class="button-row">
 			<button @click="decrement">-</button>
@@ -16,18 +16,17 @@
 	</view>
 </template>
 
-<script>
-// This would be executed in the worker thread in a real Lynx setup
-import { ref } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 
 // Debug logging
 console.log('LynxCounter component is being loaded');
 
-export default {
+export default defineComponent({
 	name: 'LynxCounter',
 	setup() {
-		console.log('LynxCounter setup function called');
-
+		console.log('LynxCounter setup started');
+		
 		const count = ref(0);
 
 		function increment() {
@@ -63,7 +62,7 @@ export default {
 	mounted() {
 		console.log('LynxCounter mounted');
 	}
-};
+});
 </script>
 
 <style>
@@ -81,14 +80,14 @@ export default {
 }
 
 .counter-title {
-	font-size: 1.5rem;
+	font-size: 1rem;
 	font-weight: bold;
 	margin-bottom: 1rem;
 	color: #333;
 }
 
 .counter-value {
-	font-size: 2rem;
+	font-size: 1rem;
 	font-weight: bold;
 	margin: 1rem 0;
 	color: #0066cc;

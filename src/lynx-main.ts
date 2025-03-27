@@ -5,10 +5,10 @@
 import { createApp, h } from 'vue';
 
 // Import our components
-import LynxCounter from './components/LynxCounter.vue';
-import LynxDebugPanel from './components/LynxDebugPanel.vue';
-import LynxFooter from './components/LynxFooter.vue';
-import LynxHelloWorld from './components/LynxHelloWorld.vue';
+import LynxCounter from './components/common/LynxCounter.vue';
+import LynxDebugPanel from './components/common/LynxDebugPanel.vue';
+import LynxFooter from './components/common/LynxFooter.vue';
+import LynxHelloWorld from './components/common/LynxHelloWorld.vue';
 // Add debugging
 console.log('Lynx main thread script starting');
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       render() {
         return h('div', { class: 'lynx-app-container' }, [
           h(LynxHelloWorld, {
-            msg: 'Vue Lynx Hello World',
+            msg: 'Vue Lynx Genesis',
             onVnodeBeforeMount() {
               console.log('LynxHelloWorld before mount');
             },

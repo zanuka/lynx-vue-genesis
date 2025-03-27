@@ -6,19 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Lynx Genesis</title>
 
-    <!-- Workaround for missing Lynx exports -->
     <script>
-      // Create global mock for missing exports from Lynx packages
       window.__lynxMocks = {
         createLynxComponent: function () {
           console.warn('Mock createLynxComponent called');
           return {};
         },
-        // Add other mocks as needed
       };
     </script>
 
-    <!-- Preload a CSS backup for the case where Lynx isn't loading correctly -->
     <style>
       body {
         margin: 0;
@@ -34,7 +30,6 @@
         position: relative;
       }
 
-      /* Fallback styling for components if Lynx elements don't load */
       view {
         display: flex;
         flex-direction: column;
@@ -50,7 +45,6 @@
         margin: 0 auto;
       }
 
-      /* Debug console */
       #debug-console {
         position: fixed;
         bottom: 0;
@@ -86,7 +80,6 @@
         color: #fcc419;
       }
 
-      /* Debug toggle button */
       #debug-toggle {
         position: fixed;
         bottom: 10px;
@@ -101,7 +94,6 @@
         z-index: 10000;
       }
 
-      /* Loading indicator */
       #loading-indicator {
         position: fixed;
         top: 0;
@@ -137,14 +129,11 @@
       }
     </style>
 
-    <!-- Error handling script that runs before the main script -->
     <script>
-      // Define a global error handler
       window.addEventListener('error', function (event) {
         console.error('Global error:', event.error || event.message);
         const errorMessage = event.error ? event.error.message : event.message;
 
-        // Check if it's the specific error we're concerned about
         if (errorMessage &&
           (errorMessage.includes('createLynxComponent') ||
             errorMessage.includes('does not provide an export'))
@@ -153,12 +142,10 @@
             'The Lynx library does not provide an expected export. ' +
             'We will try to continue without Lynx-specific features.');
 
-          // Prevent the error from stopping further execution
           event.preventDefault();
         }
       });
 
-      // Function to show an error message to the user
       function showErrorMessage(title, message) {
         const loadingIndicator = document.getElementById('loading-indicator');
         if (loadingIndicator) {
@@ -172,7 +159,6 @@
         }
       }
 
-      // Create a failsafe to remove the loading indicator after a timeout
       setTimeout(function () {
         const loadingIndicator = document.getElementById('loading-indicator');
         if (loadingIndicator && loadingIndicator.style.display !== 'none') {
@@ -182,13 +168,11 @@
       }, 10000); // 10 seconds timeout
     </script>
 
-    <!-- Add the main script with an onerror handler -->
     <script type="module" src="/src/lynx-main.ts"
       onerror="showErrorMessage('Script Loading Error', 'Failed to load the main script. Check console for details.')"></script>
   </head>
 
   <body>
-    <!-- Loading indicator -->
     <div id="loading-indicator">
       <div class="spinner"></div>
       <p>Loading Vue + Lynx Demo...</p>
@@ -196,15 +180,12 @@
 
     <div id="lynx-root"></div>
 
-    <!-- Floating debug console (hidden by default) -->
     <div id="debug-console"></div>
     <button id="debug-toggle" onclick="toggleDebugConsole()">Show Debug
       Console</button>
 
     <script>
-      // Hide loading indicator when DOM content is loaded
       window.addEventListener('DOMContentLoaded', function () {
-        // Wait a bit to ensure Vue has a chance to mount
         setTimeout(function () {
           const loadingIndicator = document.getElementById('loading-indicator');
           if (loadingIndicator) {
@@ -213,7 +194,6 @@
         }, 1000);
       });
 
-      // Override console.log and friends to also output to our debug console
       function setupDebugConsole() {
         const debugConsole = document.getElementById('debug-console');
         const originals = {
@@ -231,10 +211,8 @@
           div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
           debugConsole.appendChild(div);
 
-          // Auto-scroll to bottom
           debugConsole.scrollTop = debugConsole.scrollHeight;
 
-          // Keep only the last 100 messages
           while (debugConsole.children.length > 100) {
             debugConsole.removeChild(debugConsole.firstChild);
           }
@@ -281,7 +259,6 @@
         };
       }
 
-      // Toggle debug console visibility
       function toggleDebugConsole() {
         const debugConsole = document.getElementById('debug-console');
         const debugToggle = document.getElementById('debug-toggle');
@@ -295,7 +272,6 @@
         }
       }
 
-      // Setup debug console when page loads
       window.addEventListener('DOMContentLoaded', setupDebugConsole);
     </script>
   </body>

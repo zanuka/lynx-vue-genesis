@@ -1,19 +1,11 @@
-/**
- * Simple component checker script
- * This script uses a minimal approach to validate Vue components
- * without relying on complex testing frameworks that might stall
- */
-
 import { parse } from '@vue/compiler-sfc';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Setup
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const COMPONENTS_DIR = path.resolve(__dirname, '../src/components');
 
-// Terminal colors
 const colors = {
 	reset: '\x1b[0m',
 	red: '\x1b[31m',
@@ -24,35 +16,22 @@ const colors = {
 	cyan: '\x1b[36m'
 };
 
-// Test results
 let total = 0;
 let passed = 0;
 let failed = 0;
 let skipped = 0;
 
-/**
- * Logs a message with color
- */
 function log(message, color = colors.reset) {
 	console.log(`${color}${message}${colors.reset}`);
 }
 
-/**
- * Check if a file is a Vue component
- */
 function isVueComponent(filename) {
 	return filename.endsWith('.vue');
 }
 
-/**
- * Basic check of Vue SFC structure
- */
 async function checkComponent(filepath) {
 	try {
-		// Read the file content
 		const content = fs.readFileSync(filepath, 'utf-8');
-
-		// Try to parse the component with Vue compiler
 		const { descriptor, errors } = parse(content);
 
 		if (errors && errors.length > 0) {
@@ -60,17 +39,14 @@ async function checkComponent(filepath) {
 			return false;
 		}
 
-		// Check for template section
 		if (!descriptor.template) {
 			log('  ⚠ No template section found', colors.yellow);
 		}
 
-		// Check for script section
 		if (!descriptor.script && !descriptor.scriptSetup) {
 			log('  ⚠ No script section found', colors.yellow);
 		}
 
-		// Simple validation passed
 		log('  ✓ Component structure is valid', colors.green);
 		return true;
 	} catch (error) {
@@ -79,28 +55,20 @@ async function checkComponent(filepath) {
 	}
 }
 
-/**
- * Check if component has lynx elements
- */
 function hasLynxElements(filepath) {
 	try {
 		const content = fs.readFileSync(filepath, 'utf-8');
-		// Check for Lynx custom elements like <view> and <text>
 		return content.includes('<view') || content.includes('<text');
 	} catch (error) {
 		return false;
 	}
 }
 
-/**
- * Main function to run component checks
- */
 async function runComponentChecks() {
 	log('='.repeat(60), colors.blue);
 	log('COMPONENT VALIDATOR', colors.blue);
 	log('='.repeat(60), colors.blue);
 
-	// Get all Vue files
 	const files = fs
 		.readdirSync(COMPONENTS_DIR)
 		.filter(isVueComponent)
@@ -109,7 +77,6 @@ async function runComponentChecks() {
 	total = files.length;
 	log(`Found ${total} component(s) to check\n`, colors.cyan);
 
-	// Check each component
 	for (const file of files) {
 		const filename = path.basename(file);
 		const isLynxComponent = hasLynxElements(file);
@@ -129,7 +96,6 @@ async function runComponentChecks() {
 		}
 	}
 
-	// Print summary
 	log('\n' + '='.repeat(60), colors.blue);
 	log('SUMMARY', colors.blue);
 	log('='.repeat(60), colors.blue);
@@ -139,11 +105,9 @@ async function runComponentChecks() {
 	log(`Skipped: ${skipped}`, colors.yellow);
 	log('='.repeat(60), colors.blue);
 
-	// Exit with appropriate code
 	process.exit(failed > 0 ? 1 : 0);
 }
 
-// Run the checks
 runComponentChecks().catch((error) => {
 	log(`Fatal error: ${error.message}`, colors.red);
 	process.exit(1);

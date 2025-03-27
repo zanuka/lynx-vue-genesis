@@ -12,5 +12,4 @@ export const CONFIG = {
 	}
 };
 
-// Type for the CONFIG object
 export type ConfigType = typeof CONFIG;

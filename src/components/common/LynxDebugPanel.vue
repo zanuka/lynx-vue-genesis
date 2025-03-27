@@ -3,7 +3,19 @@
 -->
 <template>
 	<view class="debug-container">
-		<text class="debug-title">Vue-Lynx Debug Panel</text>
+		<text class="debug-title">Lynx Debug Panel</text>
+		<view class="debug-section">
+			<text class="section-label">Environment</text>
+			<text class="debug-info">{{ environment }}</text>
+		</view>
+		<view class="debug-section">
+			<text class="section-label">Platform</text>
+			<text class="debug-info">{{ platform }}</text>
+		</view>
+		<view class="debug-section">
+			<text class="section-label">Time</text>
+			<text class="debug-info">{{ currentTime }}</text>
+		</view>
 
 		<view class="debug-section">
 			<text class="section-label">Main Thread</text>
@@ -88,101 +100,139 @@
 	</view>
 </template>
 
-<script>
-import { reactive, ref } from 'vue';
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
-// Maximum number of logs to show
 const MAX_LOGS = 10;
 
-export default {
-	name: 'LynxDebugPanel',
-	setup() {
-		console.log('Debug panel setup started');
+console.log('LynxDebugPanel setup started');
 
-		// Logs for each thread
-		const mainThreadLogs = ref([]);
-		const workerThreadLogs = ref([]);
+const currentTime = ref<string>(new Date().toLocaleTimeString());
+const platform = ref<string>('Unknown');
+const environment = ref<string>(process.env.NODE_ENV || 'development');
 
-		// Current state
-		const state = reactive({
-			count: 0,
-			lastUpdated: 'Not yet updated',
-			message: ''
+// Logs for each thread
+const mainThreadLogs = ref<string[]>([]);
+const workerThreadLogs = ref<string[]>([]);
+
+// Current state
+interface State {
+	count: number;
+	lastUpdated: string;
+	message: string;
+}
+
+const state = reactive<State>({
+	count: 0,
+	lastUpdated: 'Not yet updated',
+	message: ''
+});
+
+// Add a log to the main thread logs
+function addMainThreadLog(message: string): void {
+	console.log('Main thread log:', message);
+	mainThreadLogs.value = [message, ...mainThreadLogs.value].slice(
+		0,
+		MAX_LOGS
+	);
+}
+
+// Add a log to the worker thread logs
+function addWorkerThreadLog(message: string): void {
+	console.log('Worker thread log:', message);
+	workerThreadLogs.value = [message, ...workerThreadLogs.value].slice(
+		0,
+		MAX_LOGS
+	);
+}
+
+// Update the state
+function updateState(newState: Partial<State>): void {
+	console.log('Updating state:', newState);
+	Object.assign(state, newState);
+}
+
+// Send a test message to the worker
+function sendMessage(): void {
+	const message = `Test message at ${new Date().toLocaleTimeString()}`;
+	addMainThreadLog(`Sending: ${message}`);
+
+	// Normally we would send this to the worker, but for the demo we'll just simulate it
+	setTimeout(() => {
+		addWorkerThreadLog(`Received: ${message}`);
+		updateState({
+			message,
+			lastUpdated: new Date().toISOString()
 		});
 
-		// Add a log to the main thread logs
-		function addMainThreadLog(message) {
-			console.log('Main thread log:', message);
-			mainThreadLogs.value = [message, ...mainThreadLogs.value].slice(
-				0,
-				MAX_LOGS
-			);
-		}
+		// Simulate worker response
+		setTimeout(() => {
+			const response = `Response to "${message}"`;
+			addWorkerThreadLog(`Sending: ${response}`);
 
-		// Add a log to the worker thread logs
-		function addWorkerThreadLog(message) {
-			console.log('Worker thread log:', message);
-			workerThreadLogs.value = [message, ...workerThreadLogs.value].slice(
-				0,
-				MAX_LOGS
-			);
-		}
-
-		// Update the state
-		function updateState(newState) {
-			console.log('Updating state:', newState);
-			Object.assign(state, newState);
-		}
-
-		// Send a test message to the worker
-		function sendMessage() {
-			const message = `Test message at ${new Date().toLocaleTimeString()}`;
-			addMainThreadLog(`Sending: ${message}`);
-
-			// Normally we would send this to the worker, but for the demo we'll just simulate it
+			// Simulate main thread receiving response
 			setTimeout(() => {
-				addWorkerThreadLog(`Received: ${message}`);
-				updateState({
-					message,
-					lastUpdated: new Date().toISOString()
-				});
-
-				// Simulate worker response
-				setTimeout(() => {
-					const response = `Response to "${message}"`;
-					addWorkerThreadLog(`Sending: ${response}`);
-
-					// Simulate main thread receiving response
-					setTimeout(() => {
-						addMainThreadLog(`Received: ${response}`);
-					}, 300);
-				}, 500);
+				addMainThreadLog(`Received: ${response}`);
 			}, 300);
+		}, 500);
+	}, 300);
+}
+
+// Clear all logs
+function clearLogs(): void {
+	mainThreadLogs.value = [];
+	workerThreadLogs.value = [];
+}
+
+// Initialize with some starter logs
+addMainThreadLog('Debug panel initialized');
+addWorkerThreadLog('Worker ready');
+
+console.log('Debug panel setup completed');
+
+let timer: number | null = null;
+
+onMounted(() => {
+	console.log('LynxDebugPanel mounted');
+	// Update time every second
+	timer = window.setInterval(() => {
+		currentTime.value = new Date().toLocaleTimeString();
+	}, 1000);
+
+	// Check if we're in a Lynx native environment
+	if (typeof window !== 'undefined') {
+		if (typeof window.lynx !== 'undefined') {
+			// Check specific Lynx platform if available
+			if (window.lynx.platform) {
+				platform.value = `Lynx ${window.lynx.platform}`;
+			} else {
+				platform.value = 'Lynx Native';
+			}
+		} else {
+			// We're in a web browser
+			platform.value = 'Lynx Web';
 		}
-
-		// Clear all logs
-		function clearLogs() {
-			mainThreadLogs.value = [];
-			workerThreadLogs.value = [];
+		
+		// Additional checks for development mode URLs
+		const url = window.location.href;
+		if (url.includes('localhost') || url.includes('127.0.0.1')) {
+			if (url.includes('lynx.html')) {
+				platform.value = 'Lynx Web (Development)';
+			}
 		}
-
-		// Initialize with some starter logs
-		addMainThreadLog('Debug panel initialized');
-		addWorkerThreadLog('Worker ready');
-
-		console.log('Debug panel setup completed');
-
-		return {
-			mainThreadLogs,
-			workerThreadLogs,
-			state,
-			sendMessage,
-			clearLogs
-		};
 	}
-};
-</script>
+});
 
+onBeforeUnmount(() => {
+	console.log('LynxDebugPanel unmounting');
+	// Clean up interval
+	if (timer !== null) {
+		clearInterval(timer);
+	}
+});
+
+console.log('LynxDebugPanel setup completed');
+</script>
 <style>
 .debug-container {
 	background-color: #f8fafc;

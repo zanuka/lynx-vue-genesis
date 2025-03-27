@@ -4,8 +4,8 @@ import { defineConfig } from 'vite';
 import svgLoader from 'vite-svg-loader';
 import viteLynxPlugin from './vite-lynx-plugin.js';
 
+// Use Vue plugin with custom elements support
 export default defineConfig({
-	// Use Vue plugin with custom elements support
 	plugins: [
 		vue({
 			template: {
@@ -28,6 +28,7 @@ export default defineConfig({
 	server: {
 		port: 3000,
 		host: '127.0.0.1',
+		open: '/lynx.html',
 		hmr: {
 			// Disable HMR overlay to prevent error popups
 			overlay: false
