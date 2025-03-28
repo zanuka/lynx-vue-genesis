@@ -131,70 +131,12 @@ The debug panel shows an example of the following Lynx features:
 # Install dependencies
 bun install
 
-# Start development server
+# Start development server (refer to Platform-Specific Build Commands for all options)
 bun dev
-
-# Start Lynx development server
-bun dev:lynx
-
-# Start iOS simulator
-bun dev:ios-simulator
-
-# Build for production
-bun build
-
-# Preview production build
-bun serve
 
 # Run tests
 bun test
 ```
-
-## Development Scripts
-
-- `bun dev` - Start development server
-  - Runs the traditional Vue application without Lynx integration
-  - Uses `src/main.ts` as the entry point
-  - Useful for compatibility testing and comparing performance
-  - Provides a fallback development environment
-
-- `bun dev:lynx` - Start Lynx development server
-  - Opens the application with Lynx integration at `/lynx.html`
-  - Uses `src/main.ts` as the entry point with Lynx web components
-  - Demonstrates the multi-threaded UI architecture
-  - Shows real-time thread communication in the debug panel
-
-- `bun dev:ios` - Start iOS development server
-  - Uses `src/index.js` as the entry point
-  - Builds the app with iOS-specific configurations
-  - For testing on iOS devices or simulator
-
-- `bun dev:ios-simulator` - Start iOS simulator development server
-  - Uses `src/index.js` as the entry point
-  - Automatically opens the app in the iOS simulator
-  - Great for testing iOS-specific components
-
-- `bun dev:android` - Start Android development server
-  - Uses `src/index.js` as the entry point
-  - Builds the app with Android-specific configurations
-  - For testing on Android devices or emulator
-
-- `bun build` - Build for production (web)
-  - Uses `src/main.ts` as the entry point
-- `bun build:ios` - Build for iOS
-  - Uses `src/index.js` as the entry point
-- `bun build:android` - Build for Android
-  - Uses `src/index.js` as the entry point
-- `bun build:lynx` - Build Lynx bundle
-- `bun serve` - Preview production build
-- `bun test` - Run all tests
-- `bun test:unit` - Run unit tests
-- `bun test:unit:vitest:ui` - Run unit tests with UI
-- `bun lint` - Run linting
-- `bun clean:cache` - Clean cache
-- `bun clean:lib` - Clean dependencies
-
-While the project is evolving, both standard and Lynx-enabled development paths are maintained to allow for testing, comparison, and gradual component migration.
 
 ## Vue-Lynx Integration
 
@@ -319,7 +261,7 @@ The `src/main.ts` file serves as the standard entry point for the Vue applicatio
 - Loads necessary CSS and Lynx web components
 - Mounts to the standard `#app` element in the DOM
 
-**Used by:** `bun run dev` and `bun run build` commands (standard web development)
+**Used by:** Web development commands (refer to Platform-Specific Build Commands section)
 
 ### 2. src/index.js (Lynx Mobile Entry Point)
 
@@ -331,7 +273,7 @@ The `src/index.js` file serves as the specialized entry point for Lynx mobile pl
 - Applies different mounting strategies based on the detected environment
 - Exports the app instance for Lynx runtime
 
-**Used by:** `bun run dev:ios`, `bun run dev:android`, `bun run build:ios`, and `bun run build:android` commands
+**Used by:** iOS and Android build commands (refer to Platform-Specific Build Commands section)
 
 ### Build Configuration
 
@@ -423,19 +365,10 @@ This dual-bundler approach allows us to leverage Vite's speed for general Vue de
 
 ### Build Process
 
-When developing or building:
-
-1. `bun dev` runs the standard Vite development server
-2. `bun dev:lynx` runs Vite but loads the Lynx-enabled entry point
-3. `bun build:lynx:webpack` runs Webpack to build the Lynx bundle
-4. `bun build` runs the standard Vite build process
+When developing or building, refer to the Platform-Specific Build Commands section for the appropriate commands based on your target platform and needs.
 
 This separation makes it possible to incrementally adopt Lynx in an existing Vue application without disrupting the standard workflow.
 
 ## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
-
-## Author
-
-Copyright (c) 2025-present, Mike Delucchi - Zanuka Labs LLC.
