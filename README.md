@@ -63,7 +63,7 @@ graph TD
     K --> L[Import appropriate components]
 ```
 
-This architecture allows you to:
+The goal of this architecture should allow you to:
 1. Write once, run anywhere with common components
 2. Create platform-specific optimizations when needed
 3. Use adaptive components that automatically use the right implementation for each platform
